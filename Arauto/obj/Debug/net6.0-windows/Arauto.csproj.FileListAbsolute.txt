@@ -30,3 +30,4 @@ C:\Users\Mikael\source\repos\Arauto\Arauto\obj\Debug\net6.0-windows\Arauto.Redat
 C:\Users\Mikael\source\repos\Arauto\Arauto\obj\Debug\net6.0-windows\Arauto.Contas.resources
 C:\Users\Mikael\source\repos\Arauto\Arauto\obj\Debug\net6.0-windows\Arauto.Browser.resources
 C:\Users\Mikael\source\repos\Arauto\Arauto\obj\Debug\net6.0-windows\Arauto.Properties.Resources.resources
+C:\Users\Mikael\source\repos\Arauto\Arauto\obj\Debug\net6.0-windows\Arauto.sourcelink.json

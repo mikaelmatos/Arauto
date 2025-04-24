@@ -353,7 +353,7 @@ namespace Arauto
 
                 string[] vozes = new string[4];
                 vozes[0] = "ErXwobaYiN019PkySvjV"; //Antônio
-                vozes[1] = "EXAVITQu4vr4xnSDxMaL"; //Thiago
+                vozes[1] = "ErXwobaYiN019PkySvjV"; //Thiago
                 vozes[2] = "EXAVITQu4vr4xnSDxMaL"; //Camila
                 vozes[3] = "EXAVITQu4vr4xnSDxMaL"; //Amélia
 
