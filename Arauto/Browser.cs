@@ -36,7 +36,7 @@ namespace Arauto
                 string script = "window.location.href";
                 string result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
 
-                textBox1.Text = result.Trim('"').Trim();
+                textBox1.Text = result.Trim('"').Trim('"').Trim().Trim('"').Trim();
 
                 int indice = 0;
                 script = "document.getElementsByTagName(\"img\")[" + indice + "].src";

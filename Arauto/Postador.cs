@@ -56,6 +56,8 @@ namespace Arauto
             ResumeLayout(false);
         }
 
+        int nTentativa = 0;
+
         private async void Postador_Load(object sender, EventArgs e)
         {
             string userDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "WebView2UserData0" + contaPostagem);
@@ -70,26 +72,65 @@ namespace Arauto
 
             webView21.CoreWebView2.NavigationCompleted += async (sender, e) =>
             {
-                int nTentativa = 0;
-
                 if (await Postar())
                 {
-                    nTentativa++;
-                    Text = "Postado com sucesso! na tentativa" + nTentativa;
-                    await Task.Delay(4000);
+                    nTentativa = 1;
+                    Text = "Postado com sucesso! na tentativa Nº " + nTentativa;
                 }
-                else if (await Postar())
+                else
                 {
-                    nTentativa++;
-                    Text = "Postado com sucesso! na tentativa" + nTentativa;
-                    await Task.Delay(4000);
+                    nTentativa = 2;
+
+                    SendKeys.Send("{PGDN}");
+
+                    string script = "document.querySelectorAll('button[data-e2e=\"post_video_button\"]')[0].click();";
+
+                    await webView21.ExecuteScriptAsync(script);
+
+                    File.AppendAllText(DateTime.Now.ToString("yyyyMMdd") + "-" + contaPostagem + "blacklist.log", postagem.Titulo.ToUpper() + ", ");
+                    Text = "Postado!";
+
+                    await Task.Delay(25000);
+
+                    script = "window.location.href";
+                    string result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+
+                    if (result.Contains("https://www.tiktok.com/tiktokstudio/content"))
+                    {
+                        Text = "Postado com sucesso! na tentativa Nº " + nTentativa;
+                    }
+                    else
+                    {
+                        nTentativa = 3;
+
+                        SendKeys.Send("{PGDN}");
+
+                        script = "document.querySelectorAll('button[data-e2e=\"post_video_button\"]')[0].click();";
+
+                        await webView21.ExecuteScriptAsync(script);
+
+                        File.AppendAllText(DateTime.Now.ToString("yyyyMMdd") + "-" + contaPostagem + "blacklist.log", postagem.Titulo.ToUpper() + ", ");
+                        Text = "Postado!";
+
+                        await Task.Delay(25000);
+
+                        script = "window.location.href";
+                        result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+
+                        if (result.Contains("https://www.tiktok.com/tiktokstudio/content"))
+                        {
+                            Text = "Postado com sucesso! na tentativa Nº " + nTentativa;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Não postado mesmo com " + nTentativa + " tentativas");
+                        }
+                    }
                 }
-                else if (await Postar())
-                {
-                    nTentativa++;
-                    Text = "Postado com sucesso! na tentativa" + nTentativa;
-                    await Task.Delay(4000);
-                }
+                await Task.Delay(5000);
+
+                File.AppendAllText(DateTime.Now.ToString("yyyyMMdd") + "-" + contaPostagem + "blacklist.log", postagem.Titulo.ToUpper() + ", ");
+
 
                 redatorPai.PostarKwai(postagem);
 
@@ -100,11 +141,15 @@ namespace Arauto
         {
             try
             {
+                string script = "document.getElementsByTagName(\"body\")[0].innerHTML.includes(\"Quando publicar\")";
+                string result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+
                 Random rand = new Random();
                 int delay = rand.Next(2000, 3000);
                 await Task.Delay(delay);
 
-                string script = "document.getElementsByClassName('upload-stage-btn')[0].click();";
+
+                script = "document.getElementsByClassName('upload-stage-btn')[0].click();";
                 await webView21.ExecuteScriptAsync(script);
 
                 string pastaAtual = AppDomain.CurrentDomain.BaseDirectory.Replace("/", "\\") + "video-bruto\\";
@@ -121,10 +166,20 @@ namespace Arauto
 
                 await Task.Delay(delay * 4);
 
+
                 script = "document.querySelectorAll('button[aria-label=\"Hashtag\"]')[0].click();";
                 await webView21.ExecuteScriptAsync(script);
                 await Task.Delay(delay);
-                SendKeys.Send("noticia #tiktoknews");
+
+                if (contaPostagem == 3)
+                {
+                    SendKeys.Send("jogodasaude #treino #dieta");
+                }
+                else
+                {
+                    SendKeys.Send("noticia #tiktoknews");
+                }
+
                 await Task.Delay(100);
                 SendKeys.Send("{ENTER}");
                 await Task.Delay(100);
@@ -132,8 +187,11 @@ namespace Arauto
                 await Task.Delay(delay);
                 Clipboard.SetText(postagem.Resumo);
                 await Task.Delay(100);
-                SendKeys.Send("^v"); await Task.Delay(delay);
 
+                if (!Clipboard.GetText().Contains("Arauto"))
+                {
+                    SendKeys.Send("^v"); await Task.Delay(delay);
+                }
 
                 Text = "Postando!";
 
@@ -141,13 +199,12 @@ namespace Arauto
 
                 await webView21.ExecuteScriptAsync(script);
 
-                File.AppendAllText(DateTime.Now.ToString("yyyyMMdd") + "blacklist.log", postagem.Titulo.ToUpper() + ", ");
                 Text = "Postado!";
 
                 await Task.Delay(25000);
 
                 script = "window.location.href";
-                string result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+                result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
 
                 if (result.Contains("https://www.tiktok.com/tiktokstudio/content"))
                 {

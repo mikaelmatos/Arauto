@@ -16,6 +16,7 @@ using MediaToolkit.Options;
 using MediaToolkit;
 using System.Diagnostics;
 using static Arauto.Redator;
+using Arauto.Util;
 
 namespace Arauto
 {
@@ -51,14 +52,18 @@ namespace Arauto
             this.TopMost = true;
             this.Activate();
 
+            int contaPostagem = new Random().Next(3, 7);
+
+            //contaPostagem = 3;// só pra testar
+            //contaPostagem = 4;// só pra testar
 
             string blackList = "";
 
-            if (File.Exists(DateTime.Now.ToString("yyyyMMdd") + "blacklist.log"))
+            if (File.Exists(DateTime.Now.ToString("yyyyMMdd") + "-" + contaPostagem + "blacklist.log"))
             {
-                StreamReader streamReader = new StreamReader(DateTime.Now.ToString("yyyyMMdd") + "blacklist.log");
+                StreamReader streamReader = new StreamReader(DateTime.Now.ToString("yyyyMMdd") + "-" + contaPostagem + "blacklist.log");
                 string blackListTexto = streamReader.ReadToEnd().Trim().Trim(',');
-                blackList = "[não fale sobre assuntos relacionados: " + blackListTexto + "]";
+                blackList = "[NÃO FALE sobre os assuntos: " + blackListTexto.ToLower() + "]";
                 streamReader.Close();
             }
 
@@ -84,13 +89,18 @@ namespace Arauto
 
                 string phrase = "Qual a noticia mais importante do dia, resuma em um paragrafo com titulo e resumo, use texto sem caracteres estranhos e sem citar fonte [apenas texto, sem imagem ou thumb][números e datas por extenso] " + blackList;
 
+                //conta = 3: jogo da saude (pt-br)
                 //conta = 4: esportes
                 //conta = 5: hora news
                 //conta = 6: atitude positiva
 
-                int contaPostagem = new Random().Next(4, 7);
 
                 Text += " - Conta Postagem: " + contaPostagem;
+
+                if (contaPostagem == 3)
+                {
+                    phrase = "Quero uma dica de saúde ou curiosidade, apenas um titulo e um paragrafo " + blackList;
+                }
 
                 if (contaPostagem == 4)
                 {
@@ -146,15 +156,29 @@ namespace Arauto
 
                 try
                 {
-                    titulo = result.Split('\n')[0].Trim('"').Replace("\\n", "\\").Split('\\')[0].Replace("Título: ", "");
+                    titulo = result.Split('\n')[0].Trim('"').Replace("\\n", "\\").Split('\\')[0].Replace("Título: ", "").Replace(": ", " ");
                     resumo = result.Split('\n')[0].Trim('"').Replace("\\n", "\\").Split('\\')[1];
 
                     resumo = resumo.Replace(resumo.Split('.')[resumo.Split('.').Count() - 1], "");
 
-                    if (!await GerarWav2(titulo + "! " + resumo.Replace(".", "!"), "narracao/" + titulo.ToUpper() + ".wav"))
+
+                    if (contaPostagem == 3)
                     {
-                        GerarWav(titulo + "! " + resumo.Replace(".", "!"), titulo.ToUpper() + ".wav");
+                        resumo = resumo.Replace("4owindow", "¬").Split('¬')[0];
+
+                        if (resumo.Contains("_"))
+                        {
+                            resumo = resumo.Split('_')[0];
+                        }
+
+                        resumo = resumo + " Compartilhe este vídeo, deixe seu like e entre no jogo da saúde";
                     }
+
+                    if (contaPostagem == 4)
+                    {
+                        resumo = resumo + " Compartilhe este vídeo, deixe seu like";
+                    }
+
                 }
                 catch
                 {
@@ -163,14 +187,19 @@ namespace Arauto
 
                 await Task.Delay(delay * 4);
 
-                string complementoTema = "";
+
+                phrase = "Gere uma imagem sobre a noticia apenas com o titulo e uma chamada, com um fundo atras desfocado que esteja relacionado ao tema";
+
+                if (contaPostagem == 3)
+                {
+                    phrase = "Gere uma imagem sobre isso no estilo videogame antigo [não precisa usar o texto todo se for muito longo, foco na imagem e criatividade, faça estilo pixel art, com os pixels do mesmo tamanho]";
+                }
 
                 if (contaPostagem == 4)
                 {
-                    complementoTema = " use os simbolos dos times e estética futebolística";
+                    phrase = "Gere uma imagem sobre a noticia apenas com o titulo e uma chamada, que esteja relacionado ao tema, use os símbolos dos times ou outros recursos visuais criativos, use estética futebolística, no estilo pixel art com todos os pixels do mesmo tamanho";
                 }
 
-                phrase = "Gere uma imagem sobre a noticia apenas com o titulo e uma chamada, com um fundo atras desfocado que esteja relacionado ao tema" + complementoTema;
                 SendKeys.Send(phrase);
                 await Task.Delay(delay);
 
@@ -217,14 +246,15 @@ namespace Arauto
                 await Task.Delay(delay * 10);
 
                 script = "document.getElementsByTagName(\"body\")[0].innerHTML.replace(\"O ChatGPT disse:\",\"¬\").split('¬')[1]";
-
-                result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
-                result = result.Replace(@"\u003C", "<");
-                result = result.Replace("\\", "");
-                string imagem = result.Replace("src=", "¬").Split('¬')[1].Split('"')[1].Replace("&amp;", "&");
+                string imagem = "";
 
                 try
                 {
+                    result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+                    result = result.Replace(@"\u003C", "<");
+                    result = result.Replace("\\", "");
+                    imagem = result.Replace("src=", "¬").Split('¬')[1].Split('"')[1].Replace("&amp;", "&");
+
                     if (imagem.Contains("favicon"))
                     {
                         imagem = result.Replace("src=", "¬").Split('¬')[2].Split('"')[1].Replace("&amp;", "&");
@@ -234,7 +264,7 @@ namespace Arauto
                 {
                     Application.Restart();
                 }
-                            
+
                 Postagem postagem = new Postagem();
                 postagem.Titulo = titulo;
                 postagem.Resumo = resumo;
@@ -250,6 +280,11 @@ namespace Arauto
                 }
 
                 File.AppendAllText("json/" + titulo.ToUpper() + ".json", CorrigirJson(json));
+
+                if (!await GerarWav2(ConversorNumeros.SubstituirNumerosPorExtenso(titulo + "! " + resumo.Replace(".", "!")), "narracao/" + titulo.ToUpper() + ".wav"))
+                {
+                    GerarWav(titulo + "! " + resumo.Replace(".", "!"), titulo.ToUpper() + ".wav");
+                }
 
                 try
                 {
@@ -324,16 +359,20 @@ namespace Arauto
                 Directory.CreateDirectory("narracao");
             }
 
-            string[] chaves = new string[7];
+            string[] chaves = new string[10];
             chaves[0] = "sk_ec8ae644a856030565a24f6b48c2a1177c0e8b86b12a28dd";//mikaelroquematos
             chaves[1] = "sk_83b1bdf1bd31ec72410974ad278a1e10191fad68009114a5";//robokwai3
             chaves[2] = "sk_727c1ff47bcf7f9c1cb6ebc66439de43ddc0e80f8d910f8d";//robokwai2
-            chaves[3] = "sk_2830f11f30e4a2aa94bc3acdc35ab9812c6e4e1e9ab457be";//continue
-            chaves[4] = "sk_d0bd7e364739e2c25fa6ec7daf05dd05d039e47c207e6da5";//hora
+            chaves[3] = "sk_2830f11f30e4a2aa94bc3acdc35ab9812c6e4e1e9ab457be";//robokwai6
+            chaves[4] = "sk_d0bd7e364739e2c25fa6ec7daf05dd05d039e47c207e6da5";//continueanadar
             chaves[5] = "sk_aa85ae779004c3c5dad24d4877126eb47f09f762a2a1f8cd";//mikaelroquematos
             chaves[6] = "sk_cf285ba8cbccb2e7d47440367c0e5227cae55ac4175c398f";//atitude
 
-            string ApiKey = chaves[new Random().Next(0, 7)];
+            chaves[7] = "sk_9ca578e537d8ba3bdb3a1d74a4357646b854685d76680c12"; //mikael.14
+            chaves[8] = "sk_82502e28e0ccebef35cda1e3cb8bc58618f965bec79cb268"; //robokwai
+            chaves[9] = "sk_f2ca5c1b48973ccff1d11e293b73652f94149da8d970bfe5"; //robokwai4
+
+            string ApiKey = chaves[new Random().Next(7, 10)]; //Depois botar todas e incluir mais
 
             try
             {
@@ -371,7 +410,7 @@ namespace Arauto
 
                 return true;
             }
-            catch(Exception erro)
+            catch (Exception erro)
             {
                 return false;
             }

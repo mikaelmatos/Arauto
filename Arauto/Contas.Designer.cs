@@ -101,9 +101,9 @@
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label2.Location = new Point(182, 46);
             label2.Name = "label2";
-            label2.Size = new Size(71, 15);
+            label2.Size = new Size(80, 15);
             label2.TabIndex = 2;
-            label2.Text = "Carregando";
+            label2.Text = "Carregando...";
             // 
             // pictureBox1
             // 
@@ -133,9 +133,9 @@
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label3.Location = new Point(182, 107);
             label3.Name = "label3";
-            label3.Size = new Size(71, 15);
+            label3.Size = new Size(80, 15);
             label3.TabIndex = 6;
-            label3.Text = "Carregando";
+            label3.Text = "Carregando...";
             // 
             // label4
             // 
@@ -174,9 +174,9 @@
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label5.Location = new Point(182, 169);
             label5.Name = "label5";
-            label5.Size = new Size(71, 15);
+            label5.Size = new Size(80, 15);
             label5.TabIndex = 10;
-            label5.Text = "Carregando";
+            label5.Text = "Carregando...";
             // 
             // label6
             // 
@@ -215,9 +215,9 @@
             label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label7.Location = new Point(182, 231);
             label7.Name = "label7";
-            label7.Size = new Size(71, 15);
+            label7.Size = new Size(80, 15);
             label7.TabIndex = 14;
-            label7.Text = "Carregando";
+            label7.Text = "Carregando...";
             // 
             // label8
             // 
@@ -256,9 +256,9 @@
             label9.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label9.Location = new Point(182, 294);
             label9.Name = "label9";
-            label9.Size = new Size(71, 15);
+            label9.Size = new Size(80, 15);
             label9.TabIndex = 18;
-            label9.Text = "Carregando";
+            label9.Text = "Carregando...";
             // 
             // label10
             // 
@@ -297,9 +297,9 @@
             label11.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label11.Location = new Point(182, 357);
             label11.Name = "label11";
-            label11.Size = new Size(71, 15);
+            label11.Size = new Size(80, 15);
             label11.TabIndex = 22;
-            label11.Text = "Carregando";
+            label11.Text = "Carregando...";
             // 
             // label12
             // 
@@ -441,6 +441,9 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(webView21);
+            MaximizeBox = false;
+            MaximumSize = new Size(488, 452);
+            MinimumSize = new Size(488, 452);
             Name = "Contas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Contas";
