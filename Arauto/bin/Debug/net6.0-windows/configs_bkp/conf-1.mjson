@@ -1,0 +1,12 @@
+{
+  "id_conta": 1,
+  "nome_conta_google": "K Wai",
+  "nome_conta_tiktok": "@kwai8351",
+  "nicho": "Signos",
+  "idioma": "Português",
+  "prompt_gerar_noticia": "Qual uma atualização de signos para hoje, pode escolher o signo, resuma em um paragrafo com titulo e resumo, use texto sem caracteres estranhos e sem citar fonte [apenas texto, sem imagem ou thumb][números e datas por extenso]",
+  "prompt_gerar_imagem": "Gere uma imagem baseada nesta notícia, com estilo visual e temática inspirados no universo de animes dos anos 90, incluindo elementos de animes dos anos 90, humor e traços característicos da série animada.\n\n\n",
+  "tags": "#anos90 #anime #signos",
+  "chamada": "Siga-nos, compartilhe este vídeo, deixe seu like",
+  "conta_ativa": true
+}

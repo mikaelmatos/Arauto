@@ -1,0 +1,12 @@
+{
+  "id_conta": 5,
+  "nome_conta_google": "Hora a Hora",
+  "nome_conta_tiktok": "@horaahoranews",
+  "nicho": "Notícias",
+  "idioma": "Português",
+  "prompt_gerar_noticia": "Qual a noticia mais importante do dia, resuma em um paragrafo com titulo e resumo, use texto sem caracteres estranhos e sem citar fonte [apenas texto, sem imagem ou thumb][números e datas por extenso]",
+  "prompt_gerar_imagem": "Gere uma imagem sobre a noticia apenas com o titulo e uma chamada, com um fundo atras desfocado que esteja relacionado ao tema",
+  "tags": "#horaahoranews",
+  "chamada": "Compartilhe este vídeo, deixe seu like",
+  "conta_ativa": true
+}

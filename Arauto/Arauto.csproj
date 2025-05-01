@@ -6,7 +6,12 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>icone.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="icone.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MediaToolkit" Version="1.1.0.1" />

@@ -1,0 +1,12 @@
+{
+  "id_conta": 3,
+  "nome_conta_google": "Rob Kwai",
+  "nome_conta_tiktok": "@jogodasaude",
+  "nicho": "Saúde",
+  "idioma": "Português",
+  "prompt_gerar_noticia": "Quero uma dica de saúde ou curiosidade surpreendente e chamativa, apenas um titulo e um paragrafo",
+  "prompt_gerar_imagem": "Gere uma imagem sobre isso no estilo videogame antigo [não precisa usar o texto todo se for muito longo, foco na imagem e criatividade, faça estilo pixel art, com os pixels do mesmo tamanho]",
+  "tags": "#jogodasaude #saude #treino",
+  "chamada": "Compartilhe este vídeo, deixe seu like e entre no jogo da saúde",
+  "conta_ativa": true
+}

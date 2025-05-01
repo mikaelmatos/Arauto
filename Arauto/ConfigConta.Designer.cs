@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigConta));
             textBox1 = new TextBox();
             comboBox1 = new ComboBox();
             label1 = new Label();
@@ -304,6 +305,10 @@
             Controls.Add(textBox1);
             Controls.Add(webView21);
             Controls.Add(webView22);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MaximumSize = new Size(539, 606);
+            MinimumSize = new Size(539, 606);
             Name = "ConfigConta";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Configurações";

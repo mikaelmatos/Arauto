@@ -29,6 +29,7 @@ namespace Arauto
 
         private void InitializeComponent()
         {
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(Postador));
             webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
             ((ISupportInitialize)webView21).BeginInit();
             SuspendLayout();
@@ -49,6 +50,7 @@ namespace Arauto
             // 
             ClientSize = new Size(1332, 635);
             Controls.Add(webView21);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Postador";
             StartPosition = FormStartPosition.CenterScreen;
             TopMost = true;

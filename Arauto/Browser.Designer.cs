@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Browser));
             webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
             textBox1 = new TextBox();
             button1 = new Button();
@@ -75,6 +76,7 @@
             Controls.Add(button1);
             Controls.Add(textBox1);
             Controls.Add(webView21);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Browser";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Browser";

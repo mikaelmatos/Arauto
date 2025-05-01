@@ -84,6 +84,10 @@
             button20 = new Button();
             button21 = new Button();
             button22 = new Button();
+            groupBox1 = new GroupBox();
+            button23 = new Button();
+            checkBox2 = new CheckBox();
+            numericUpDown2 = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)webView21).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -99,6 +103,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)webView27).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             SuspendLayout();
             // 
             // webView21
@@ -117,15 +123,15 @@
             label1.AutoSize = true;
             label1.Location = new Point(79, 45);
             label1.Name = "label1";
-            label1.Size = new Size(94, 15);
+            label1.Size = new Size(111, 15);
             label1.TabIndex = 1;
-            label1.Text = "Nome da Conta:";
+            label1.Text = "Nome da Conta: (1)";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(179, 45);
+            label2.Location = new Point(189, 45);
             label2.Name = "label2";
             label2.Size = new Size(80, 15);
             label2.TabIndex = 2;
@@ -157,7 +163,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(179, 106);
+            label3.Location = new Point(189, 106);
             label3.Name = "label3";
             label3.Size = new Size(80, 15);
             label3.TabIndex = 6;
@@ -168,9 +174,9 @@
             label4.AutoSize = true;
             label4.Location = new Point(79, 106);
             label4.Name = "label4";
-            label4.Size = new Size(94, 15);
+            label4.Size = new Size(111, 15);
             label4.TabIndex = 5;
-            label4.Text = "Nome da Conta:";
+            label4.Text = "Nome da Conta: (2)";
             // 
             // webView22
             // 
@@ -198,7 +204,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(179, 168);
+            label5.Location = new Point(189, 168);
             label5.Name = "label5";
             label5.Size = new Size(80, 15);
             label5.TabIndex = 10;
@@ -209,9 +215,9 @@
             label6.AutoSize = true;
             label6.Location = new Point(79, 168);
             label6.Name = "label6";
-            label6.Size = new Size(94, 15);
+            label6.Size = new Size(111, 15);
             label6.TabIndex = 9;
-            label6.Text = "Nome da Conta:";
+            label6.Text = "Nome da Conta: (3)";
             // 
             // webView23
             // 
@@ -239,7 +245,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.Location = new Point(179, 230);
+            label7.Location = new Point(189, 230);
             label7.Name = "label7";
             label7.Size = new Size(80, 15);
             label7.TabIndex = 14;
@@ -250,9 +256,9 @@
             label8.AutoSize = true;
             label8.Location = new Point(79, 230);
             label8.Name = "label8";
-            label8.Size = new Size(94, 15);
+            label8.Size = new Size(111, 15);
             label8.TabIndex = 13;
-            label8.Text = "Nome da Conta:";
+            label8.Text = "Nome da Conta: (4)";
             // 
             // webView24
             // 
@@ -280,7 +286,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(179, 293);
+            label9.Location = new Point(189, 293);
             label9.Name = "label9";
             label9.Size = new Size(80, 15);
             label9.TabIndex = 18;
@@ -291,9 +297,9 @@
             label10.AutoSize = true;
             label10.Location = new Point(79, 293);
             label10.Name = "label10";
-            label10.Size = new Size(94, 15);
+            label10.Size = new Size(114, 15);
             label10.TabIndex = 17;
-            label10.Text = "Nome da Conta:";
+            label10.Text = "Nome da Conta: (5) ";
             // 
             // webView25
             // 
@@ -321,7 +327,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.Location = new Point(179, 356);
+            label11.Location = new Point(189, 356);
             label11.Name = "label11";
             label11.Size = new Size(80, 15);
             label11.TabIndex = 22;
@@ -332,9 +338,9 @@
             label12.AutoSize = true;
             label12.Location = new Point(79, 356);
             label12.Name = "label12";
-            label12.Size = new Size(94, 15);
+            label12.Size = new Size(111, 15);
             label12.TabIndex = 21;
-            label12.Text = "Nome da Conta:";
+            label12.Text = "Nome da Conta: (6)";
             // 
             // webView26
             // 
@@ -458,7 +464,7 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label13.Location = new Point(179, 417);
+            label13.Location = new Point(189, 417);
             label13.Name = "label13";
             label13.Size = new Size(80, 15);
             label13.TabIndex = 32;
@@ -469,9 +475,9 @@
             label14.AutoSize = true;
             label14.Location = new Point(79, 417);
             label14.Name = "label14";
-            label14.Size = new Size(94, 15);
+            label14.Size = new Size(111, 15);
             label14.TabIndex = 31;
-            label14.Text = "Nome da Conta:";
+            label14.Text = "Nome da Conta: (7)";
             // 
             // webView27
             // 
@@ -487,7 +493,7 @@
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(31, 489);
+            checkBox1.Location = new Point(19, 22);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(109, 19);
             checkBox1.TabIndex = 35;
@@ -498,7 +504,7 @@
             // numericUpDown1
             // 
             numericUpDown1.Enabled = false;
-            numericUpDown1.Location = new Point(146, 486);
+            numericUpDown1.Location = new Point(128, 18);
             numericUpDown1.Maximum = new decimal(new int[] { 25, 0, 0, 0 });
             numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
@@ -508,12 +514,13 @@
             // 
             // button8
             // 
+            button8.Cursor = Cursors.Hand;
             button8.FlatAppearance.BorderSize = 0;
             button8.FlatStyle = FlatStyle.Flat;
             button8.ForeColor = SystemColors.ControlDarkDark;
-            button8.Location = new Point(406, 442);
+            button8.Location = new Point(392, 442);
             button8.Name = "button8";
-            button8.Size = new Size(67, 23);
+            button8.Size = new Size(68, 23);
             button8.TabIndex = 37;
             button8.Text = "Mais";
             button8.UseVisualStyleBackColor = true;
@@ -701,12 +708,63 @@
             button22.UseVisualStyleBackColor = true;
             button22.Click += button22_Click;
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(button23);
+            groupBox1.Controls.Add(checkBox2);
+            groupBox1.Controls.Add(numericUpDown2);
+            groupBox1.Controls.Add(checkBox1);
+            groupBox1.Controls.Add(numericUpDown1);
+            groupBox1.Location = new Point(12, 471);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(448, 53);
+            groupBox1.TabIndex = 52;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Automação";
+            // 
+            // button23
+            // 
+            button23.Cursor = Cursors.Hand;
+            button23.FlatAppearance.BorderSize = 0;
+            button23.FlatStyle = FlatStyle.Flat;
+            button23.ForeColor = SystemColors.ControlDarkDark;
+            button23.Location = new Point(375, 19);
+            button23.Name = "button23";
+            button23.Size = new Size(64, 23);
+            button23.TabIndex = 53;
+            button23.Text = "Menos";
+            button23.UseVisualStyleBackColor = true;
+            button23.Click += button23_Click;
+            // 
+            // checkBox2
+            // 
+            checkBox2.AutoSize = true;
+            checkBox2.Location = new Point(180, 22);
+            checkBox2.Name = "checkBox2";
+            checkBox2.Size = new Size(138, 19);
+            checkBox2.TabIndex = 37;
+            checkBox2.Text = "Postar em Conta Fixa";
+            checkBox2.UseVisualStyleBackColor = true;
+            checkBox2.CheckedChanged += checkBox2_CheckedChanged;
+            // 
+            // numericUpDown2
+            // 
+            numericUpDown2.Enabled = false;
+            numericUpDown2.Location = new Point(319, 18);
+            numericUpDown2.Maximum = new decimal(new int[] { 7, 0, 0, 0 });
+            numericUpDown2.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDown2.Name = "numericUpDown2";
+            numericUpDown2.Size = new Size(46, 23);
+            numericUpDown2.TabIndex = 38;
+            numericUpDown2.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
             // Contas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(472, 466);
+            Controls.Add(groupBox1);
             Controls.Add(button16);
             Controls.Add(button17);
             Controls.Add(button18);
@@ -722,8 +780,6 @@
             Controls.Add(button14);
             Controls.Add(button15);
             Controls.Add(button8);
-            Controls.Add(numericUpDown1);
-            Controls.Add(checkBox1);
             Controls.Add(button7);
             Controls.Add(pictureBox7);
             Controls.Add(label13);
@@ -759,6 +815,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(webView21);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MaximumSize = new Size(488, 575);
             MinimumSize = new Size(488, 505);
@@ -781,6 +838,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)webView27).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -841,5 +901,9 @@
         private Button button20;
         private Button button21;
         private Button button22;
+        private GroupBox groupBox1;
+        private CheckBox checkBox2;
+        private NumericUpDown numericUpDown2;
+        private Button button23;
     }
 }

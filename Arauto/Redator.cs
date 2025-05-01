@@ -59,7 +59,7 @@ namespace Arauto
             this.Activate();
 
             int contaPostagem = new Random().Next(1, 8);
-                       
+
             if (IdContaParam > -1)
             {
                 contaPostagem = IdContaParam;
@@ -283,7 +283,7 @@ namespace Arauto
 
                 if (configuracao != null)
                 {
-                    phrase = configuracao.prompt_gerar_imagem;
+                    phrase = configuracao.prompt_gerar_imagem + " Se houver textos que seja no idioma " + configuracao.idioma;
                 }
 
                 script = "document.getElementsByTagName(\"body\")[0].innerHTML.includes(\"feedback\")";

@@ -1,0 +1,12 @@
+{
+  "id_conta": 7,
+  "nome_conta_google": "Health Game",
+  "nome_conta_tiktok": "@health.game",
+  "nicho": "Saúde",
+  "idioma": "Inglês",
+  "prompt_gerar_noticia": "I want a health tip or fun fact, just a title and a paragraph. ",
+  "prompt_gerar_imagem": "Gere uma imagem sobre isso no estilo videogame antigo [não precisa usar o texto todo se for muito longo, foco na imagem e criatividade, faça estilo pixel art, com os pixels do mesmo tamanho]",
+  "tags": "#health.game",
+  "chamada": "Share this video, leave your like.",
+  "conta_ativa": true
+}

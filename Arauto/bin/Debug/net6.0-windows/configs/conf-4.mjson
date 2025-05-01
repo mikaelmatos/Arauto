@@ -1,0 +1,12 @@
+{
+  "id_conta": 4,
+  "nome_conta_google": "FutPixel News",
+  "nome_conta_tiktok": "@futpixelnews",
+  "nicho": "Futebol",
+  "idioma": "Português",
+  "prompt_gerar_noticia": "Qual a noticia mais importante do dia sobre futebol, resuma em um paragrafo com titulo e resumo, use texto sem caracteres estranhos e sem citar fonte [apenas texto, sem imagem ou thumb][números e datas por extenso]",
+  "prompt_gerar_imagem": "Gere uma imagem sobre a noticia apenas com o titulo e uma chamada, que esteja relacionado ao tema, use recursos visuais criativos como simbolos dos times ou quem foi citado nominalmente, use estética futebolística, no estilo pixel art com todos os pixels do mesmo tamanho",
+  "tags": "#futpixelnews #futebol #brasil #tiktoknews",
+  "chamada": "Compartilhe este vídeo, deixe seu like",
+  "conta_ativa": true
+}

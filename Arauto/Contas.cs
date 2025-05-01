@@ -485,7 +485,7 @@ namespace Arauto
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Redator redator = new Redator(this);
+            Redator redator = new Redator(this, checkBox2.Checked ? (int)numericUpDown2.Value : -1);
             redator.ShowDialog();
 
             timer1.Stop();
@@ -643,6 +643,24 @@ namespace Arauto
 
             Browser browser = new Browser(7, "https://www.tiktok.com/tiktokstudio");
             browser.ShowDialog();
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!checkBox2.Checked)
+            {
+                numericUpDown2.Enabled = false;
+            }
+            else
+            {
+                numericUpDown2.Enabled = true;
+            }
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            Size = new Size(Size.Width, MinimumSize.Height);
+            button8.Visible = true;
         }
     }
 }
