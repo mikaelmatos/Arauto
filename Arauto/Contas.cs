@@ -31,6 +31,7 @@ namespace Arauto
             Obterconta4();
             Obterconta5();
             Obterconta6();
+            Obterconta7();
         }
 
         public async void Obterconta1()
@@ -76,7 +77,7 @@ namespace Arauto
                     script = "document.getElementsByTagName(\"h1\")[0].innerText";
                     result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
 
-                    label2.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "");
+                    label2.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
                 }
                 catch (Exception ex)
                 {
@@ -129,7 +130,7 @@ namespace Arauto
                     script = "document.getElementsByTagName(\"h1\")[0].innerText";
                     result = await webView22.CoreWebView2.ExecuteScriptAsync(script);
 
-                    label3.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "");
+                    label3.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
                 }
                 catch (Exception ex)
                 {
@@ -182,7 +183,7 @@ namespace Arauto
                     script = "document.getElementsByTagName(\"h1\")[0].innerText";
                     result = await webView23.CoreWebView2.ExecuteScriptAsync(script);
 
-                    label5.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "");
+                    label5.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
                 }
                 catch (Exception ex)
                 {
@@ -235,7 +236,7 @@ namespace Arauto
                     script = "document.getElementsByTagName(\"h1\")[0].innerText";
                     result = await webView24.CoreWebView2.ExecuteScriptAsync(script);
 
-                    label7.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "");
+                    label7.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
                 }
                 catch (Exception ex)
                 {
@@ -288,7 +289,7 @@ namespace Arauto
                     script = "document.getElementsByTagName(\"h1\")[0].innerText";
                     result = await webView25.CoreWebView2.ExecuteScriptAsync(script);
 
-                    label9.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "");
+                    label9.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
                 }
                 catch (Exception ex)
                 {
@@ -341,7 +342,59 @@ namespace Arauto
                     script = "document.getElementsByTagName(\"h1\")[0].innerText";
                     result = await webView26.CoreWebView2.ExecuteScriptAsync(script);
 
-                    label11.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "");
+                    label11.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show("Erro ao carregar imagem: " + ex.Message);
+                }
+
+            };
+        }
+        public async void Obterconta7()
+        {
+            string userDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "WebView2UserData07");
+
+            var environment = await CoreWebView2Environment.CreateAsync(null, userDataFolder);
+
+            await webView27.EnsureCoreWebView2Async(environment);
+
+            webView27.CoreWebView2.Navigate("https://myaccount.google.com/?utm_source=OGB&utm_medium=app");
+
+            webView27.CoreWebView2.NavigationCompleted += async (sender, e) =>
+            {
+                int indice = 0;
+                string script = "document.getElementsByTagName(\"img\")[" + indice + "].src";
+                string result = await webView27.CoreWebView2.ExecuteScriptAsync(script);
+                bool buscarPerfil = true;
+
+                while (buscarPerfil)
+                {
+                    script = "document.getElementsByTagName(\"img\")[" + indice + "].src";
+                    result = await webView27.CoreWebView2.ExecuteScriptAsync(script);
+                    if (result.Contains("usercontent"))
+                    {
+                        buscarPerfil = false;
+                        break;
+                    }
+                    indice++;
+                }
+
+                try
+                {
+                    using (HttpClient client = new HttpClient())
+                    {
+                        var imageBytes = await client.GetByteArrayAsync(result.Trim('"'));
+                        using (var ms = new System.IO.MemoryStream(imageBytes))
+                        {
+                            pictureBox7.Image = Image.FromStream(ms);
+                        }
+                    }
+
+                    script = "document.getElementsByTagName(\"h1\")[0].innerText";
+                    result = await webView27.CoreWebView2.ExecuteScriptAsync(script);
+
+                    label13.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
                 }
                 catch (Exception ex)
                 {
@@ -404,10 +457,35 @@ namespace Arauto
             Browser browser = new Browser(6);
             browser.ShowDialog();
         }
+        private void button7_Click_1(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            timer2.Stop();
+
+            Browser browser = new Browser(7);
+            browser.ShowDialog();
+        }
+
+        public void LoopPostagem()
+        {
+            if (checkBox1.Checked && numericUpDown1.Value > 1)
+            {
+                numericUpDown1.Value--;
+                Redator redator = new Redator(this);
+                redator.ShowDialog();
+
+                timer1.Stop();
+                timer2.Stop();
+            }
+            else
+            {
+                Application.Exit();
+            }
+        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Redator redator = new Redator();
+            Redator redator = new Redator(this);
             redator.ShowDialog();
 
             timer1.Stop();
@@ -428,6 +506,143 @@ namespace Arauto
                 timer1.Stop();
                 timer2.Stop();
             }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!checkBox1.Checked)
+            {
+                numericUpDown1.Enabled = false;
+            }
+            else
+            {
+                numericUpDown1.Enabled = true;
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Size = new Size(Size.Width, MaximumSize.Height);
+            button8.Visible = false;
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            timer2.Stop();
+            ConfigConta configConta = new ConfigConta(1, this);
+            configConta.ShowDialog();
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            timer2.Stop();
+            ConfigConta configConta = new ConfigConta(2, this);
+            configConta.ShowDialog();
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            timer2.Stop();
+            ConfigConta configConta = new ConfigConta(3, this);
+            configConta.ShowDialog();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            timer2.Stop();
+            ConfigConta configConta = new ConfigConta(4, this);
+            configConta.ShowDialog();
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            timer2.Stop();
+            ConfigConta configConta = new ConfigConta(5, this);
+            configConta.ShowDialog();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            timer2.Stop();
+            ConfigConta configConta = new ConfigConta(6, this);
+            configConta.ShowDialog();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            timer2.Stop();
+            ConfigConta configConta = new ConfigConta(7, this);
+            configConta.ShowDialog();
+        }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            timer2.Stop();
+
+            Browser browser = new Browser(1, "https://www.tiktok.com/tiktokstudio");
+            browser.ShowDialog();
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            timer2.Stop();
+
+            Browser browser = new Browser(2, "https://www.tiktok.com/tiktokstudio");
+            browser.ShowDialog();
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            timer2.Stop();
+
+            Browser browser = new Browser(3, "https://www.tiktok.com/tiktokstudio");
+            browser.ShowDialog();
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            timer2.Stop();
+
+            Browser browser = new Browser(4, "https://www.tiktok.com/tiktokstudio");
+            browser.ShowDialog();
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            timer2.Stop();
+
+            Browser browser = new Browser(5, "https://www.tiktok.com/tiktokstudio");
+            browser.ShowDialog();
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            timer2.Stop();
+
+            Browser browser = new Browser(6, "https://www.tiktok.com/tiktokstudio");
+            browser.ShowDialog();
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            timer2.Stop();
+
+            Browser browser = new Browser(7, "https://www.tiktok.com/tiktokstudio");
+            browser.ShowDialog();
         }
     }
 }

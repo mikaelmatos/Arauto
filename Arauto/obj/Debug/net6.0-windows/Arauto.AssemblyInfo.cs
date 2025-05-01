@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Arauto")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c7427683f172f8c3b1a44f40690ba31daf768b8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+158ba38f790afad06abf2d73f563f86b3fc3b0d7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Arauto")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Arauto")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Contas));
             webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
             label1 = new Label();
             label2 = new Label();
@@ -61,6 +62,28 @@
             button6 = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
             timer2 = new System.Windows.Forms.Timer(components);
+            button7 = new Button();
+            pictureBox7 = new PictureBox();
+            label13 = new Label();
+            label14 = new Label();
+            webView27 = new Microsoft.Web.WebView2.WinForms.WebView2();
+            checkBox1 = new CheckBox();
+            numericUpDown1 = new NumericUpDown();
+            button8 = new Button();
+            button9 = new Button();
+            button10 = new Button();
+            button11 = new Button();
+            button12 = new Button();
+            button13 = new Button();
+            button14 = new Button();
+            button15 = new Button();
+            button16 = new Button();
+            button17 = new Button();
+            button18 = new Button();
+            button19 = new Button();
+            button20 = new Button();
+            button21 = new Button();
+            button22 = new Button();
             ((System.ComponentModel.ISupportInitialize)webView21).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -73,6 +96,9 @@
             ((System.ComponentModel.ISupportInitialize)webView25).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)webView26).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)webView27).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
             // webView21
@@ -80,7 +106,7 @@
             webView21.AllowExternalDrop = true;
             webView21.CreationProperties = null;
             webView21.DefaultBackgroundColor = Color.White;
-            webView21.Location = new Point(31, 30);
+            webView21.Location = new Point(28, 29);
             webView21.Name = "webView21";
             webView21.Size = new Size(45, 45);
             webView21.TabIndex = 0;
@@ -89,7 +115,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(82, 46);
+            label1.Location = new Point(79, 45);
             label1.Name = "label1";
             label1.Size = new Size(94, 15);
             label1.TabIndex = 1;
@@ -99,7 +125,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(182, 46);
+            label2.Location = new Point(179, 45);
             label2.Name = "label2";
             label2.Size = new Size(80, 15);
             label2.TabIndex = 2;
@@ -109,7 +135,7 @@
             // 
             pictureBox1.BackColor = SystemColors.Control;
             pictureBox1.Image = Properties.Resources.ZZ5H;
-            pictureBox1.Location = new Point(31, 30);
+            pictureBox1.Location = new Point(28, 29);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(45, 45);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -120,7 +146,7 @@
             // 
             pictureBox2.BackColor = SystemColors.Control;
             pictureBox2.Image = Properties.Resources.ZZ5H;
-            pictureBox2.Location = new Point(31, 91);
+            pictureBox2.Location = new Point(28, 90);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(45, 45);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -131,7 +157,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(182, 107);
+            label3.Location = new Point(179, 106);
             label3.Name = "label3";
             label3.Size = new Size(80, 15);
             label3.TabIndex = 6;
@@ -140,7 +166,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(82, 107);
+            label4.Location = new Point(79, 106);
             label4.Name = "label4";
             label4.Size = new Size(94, 15);
             label4.TabIndex = 5;
@@ -151,7 +177,7 @@
             webView22.AllowExternalDrop = true;
             webView22.CreationProperties = null;
             webView22.DefaultBackgroundColor = Color.White;
-            webView22.Location = new Point(31, 91);
+            webView22.Location = new Point(28, 90);
             webView22.Name = "webView22";
             webView22.Size = new Size(45, 45);
             webView22.TabIndex = 4;
@@ -161,7 +187,7 @@
             // 
             pictureBox3.BackColor = SystemColors.Control;
             pictureBox3.Image = Properties.Resources.ZZ5H;
-            pictureBox3.Location = new Point(31, 153);
+            pictureBox3.Location = new Point(28, 152);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(45, 45);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -172,7 +198,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(182, 169);
+            label5.Location = new Point(179, 168);
             label5.Name = "label5";
             label5.Size = new Size(80, 15);
             label5.TabIndex = 10;
@@ -181,7 +207,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(82, 169);
+            label6.Location = new Point(79, 168);
             label6.Name = "label6";
             label6.Size = new Size(94, 15);
             label6.TabIndex = 9;
@@ -192,7 +218,7 @@
             webView23.AllowExternalDrop = true;
             webView23.CreationProperties = null;
             webView23.DefaultBackgroundColor = Color.White;
-            webView23.Location = new Point(31, 153);
+            webView23.Location = new Point(28, 152);
             webView23.Name = "webView23";
             webView23.Size = new Size(45, 45);
             webView23.TabIndex = 8;
@@ -202,7 +228,7 @@
             // 
             pictureBox4.BackColor = SystemColors.Control;
             pictureBox4.Image = Properties.Resources.ZZ5H;
-            pictureBox4.Location = new Point(31, 215);
+            pictureBox4.Location = new Point(28, 214);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(45, 45);
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -213,7 +239,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.Location = new Point(182, 231);
+            label7.Location = new Point(179, 230);
             label7.Name = "label7";
             label7.Size = new Size(80, 15);
             label7.TabIndex = 14;
@@ -222,7 +248,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(82, 231);
+            label8.Location = new Point(79, 230);
             label8.Name = "label8";
             label8.Size = new Size(94, 15);
             label8.TabIndex = 13;
@@ -233,7 +259,7 @@
             webView24.AllowExternalDrop = true;
             webView24.CreationProperties = null;
             webView24.DefaultBackgroundColor = Color.White;
-            webView24.Location = new Point(31, 215);
+            webView24.Location = new Point(28, 214);
             webView24.Name = "webView24";
             webView24.Size = new Size(45, 45);
             webView24.TabIndex = 12;
@@ -243,7 +269,7 @@
             // 
             pictureBox5.BackColor = SystemColors.Control;
             pictureBox5.Image = Properties.Resources.ZZ5H;
-            pictureBox5.Location = new Point(31, 278);
+            pictureBox5.Location = new Point(28, 277);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(45, 45);
             pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -254,7 +280,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(182, 294);
+            label9.Location = new Point(179, 293);
             label9.Name = "label9";
             label9.Size = new Size(80, 15);
             label9.TabIndex = 18;
@@ -263,7 +289,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(82, 294);
+            label10.Location = new Point(79, 293);
             label10.Name = "label10";
             label10.Size = new Size(94, 15);
             label10.TabIndex = 17;
@@ -274,7 +300,7 @@
             webView25.AllowExternalDrop = true;
             webView25.CreationProperties = null;
             webView25.DefaultBackgroundColor = Color.White;
-            webView25.Location = new Point(31, 278);
+            webView25.Location = new Point(28, 277);
             webView25.Name = "webView25";
             webView25.Size = new Size(45, 45);
             webView25.TabIndex = 16;
@@ -284,7 +310,7 @@
             // 
             pictureBox6.BackColor = SystemColors.Control;
             pictureBox6.Image = Properties.Resources.ZZ5H;
-            pictureBox6.Location = new Point(31, 341);
+            pictureBox6.Location = new Point(28, 340);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(45, 45);
             pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -295,7 +321,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.Location = new Point(182, 357);
+            label11.Location = new Point(179, 356);
             label11.Name = "label11";
             label11.Size = new Size(80, 15);
             label11.TabIndex = 22;
@@ -304,7 +330,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(82, 357);
+            label12.Location = new Point(79, 356);
             label12.Name = "label12";
             label12.Size = new Size(94, 15);
             label12.TabIndex = 21;
@@ -315,7 +341,7 @@
             webView26.AllowExternalDrop = true;
             webView26.CreationProperties = null;
             webView26.DefaultBackgroundColor = Color.White;
-            webView26.Location = new Point(31, 341);
+            webView26.Location = new Point(28, 340);
             webView26.Name = "webView26";
             webView26.Size = new Size(45, 45);
             webView26.TabIndex = 20;
@@ -325,11 +351,11 @@
             // 
             button1.Cursor = Cursors.Hand;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(365, 42);
+            button1.Image = Properties.Resources.google__2_;
+            button1.Location = new Point(417, 41);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(23, 23);
             button1.TabIndex = 24;
-            button1.Text = "Ver Mais";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -337,11 +363,11 @@
             // 
             button2.Cursor = Cursors.Hand;
             button2.FlatStyle = FlatStyle.Flat;
-            button2.Location = new Point(365, 103);
+            button2.Image = Properties.Resources.google__2_;
+            button2.Location = new Point(417, 102);
             button2.Name = "button2";
-            button2.Size = new Size(75, 23);
+            button2.Size = new Size(23, 23);
             button2.TabIndex = 25;
-            button2.Text = "Ver Mais";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
@@ -349,11 +375,11 @@
             // 
             button3.Cursor = Cursors.Hand;
             button3.FlatStyle = FlatStyle.Flat;
-            button3.Location = new Point(365, 165);
+            button3.Image = Properties.Resources.google__2_;
+            button3.Location = new Point(417, 164);
             button3.Name = "button3";
-            button3.Size = new Size(75, 23);
+            button3.Size = new Size(23, 23);
             button3.TabIndex = 26;
-            button3.Text = "Ver Mais";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -361,11 +387,11 @@
             // 
             button4.Cursor = Cursors.Hand;
             button4.FlatStyle = FlatStyle.Flat;
-            button4.Location = new Point(365, 227);
+            button4.Image = Properties.Resources.google__2_;
+            button4.Location = new Point(417, 226);
             button4.Name = "button4";
-            button4.Size = new Size(75, 23);
+            button4.Size = new Size(23, 23);
             button4.TabIndex = 27;
-            button4.Text = "Ver Mais";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
@@ -373,11 +399,11 @@
             // 
             button5.Cursor = Cursors.Hand;
             button5.FlatStyle = FlatStyle.Flat;
-            button5.Location = new Point(365, 290);
+            button5.Image = Properties.Resources.google__2_;
+            button5.Location = new Point(417, 289);
             button5.Name = "button5";
-            button5.Size = new Size(75, 23);
+            button5.Size = new Size(23, 23);
             button5.TabIndex = 28;
-            button5.Text = "Ver Mais";
             button5.UseVisualStyleBackColor = true;
             button5.Click += button5_Click;
             // 
@@ -385,11 +411,11 @@
             // 
             button6.Cursor = Cursors.Hand;
             button6.FlatStyle = FlatStyle.Flat;
-            button6.Location = new Point(365, 353);
+            button6.Image = Properties.Resources.google__2_;
+            button6.Location = new Point(417, 352);
             button6.Name = "button6";
-            button6.Size = new Size(75, 23);
+            button6.Size = new Size(23, 23);
             button6.TabIndex = 29;
-            button6.Text = "Ver Mais";
             button6.UseVisualStyleBackColor = true;
             button6.Click += button6_Click;
             // 
@@ -405,12 +431,304 @@
             timer2.Interval = 1000;
             timer2.Tick += timer2_Tick;
             // 
+            // button7
+            // 
+            button7.Cursor = Cursors.Hand;
+            button7.FlatStyle = FlatStyle.Flat;
+            button7.Image = Properties.Resources.google__2_;
+            button7.Location = new Point(417, 413);
+            button7.Name = "button7";
+            button7.Size = new Size(23, 23);
+            button7.TabIndex = 34;
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click_1;
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.BackColor = SystemColors.Control;
+            pictureBox7.Image = Properties.Resources.ZZ5H;
+            pictureBox7.Location = new Point(28, 401);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(45, 45);
+            pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox7.TabIndex = 33;
+            pictureBox7.TabStop = false;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label13.Location = new Point(179, 417);
+            label13.Name = "label13";
+            label13.Size = new Size(80, 15);
+            label13.TabIndex = 32;
+            label13.Text = "Carregando...";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(79, 417);
+            label14.Name = "label14";
+            label14.Size = new Size(94, 15);
+            label14.TabIndex = 31;
+            label14.Text = "Nome da Conta:";
+            // 
+            // webView27
+            // 
+            webView27.AllowExternalDrop = true;
+            webView27.CreationProperties = null;
+            webView27.DefaultBackgroundColor = Color.White;
+            webView27.Location = new Point(28, 401);
+            webView27.Name = "webView27";
+            webView27.Size = new Size(45, 45);
+            webView27.TabIndex = 30;
+            webView27.ZoomFactor = 1D;
+            // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(31, 489);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(109, 19);
+            checkBox1.TabIndex = 35;
+            checkBox1.Text = "Postar em Loop";
+            checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
+            // 
+            // numericUpDown1
+            // 
+            numericUpDown1.Enabled = false;
+            numericUpDown1.Location = new Point(146, 486);
+            numericUpDown1.Maximum = new decimal(new int[] { 25, 0, 0, 0 });
+            numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(46, 23);
+            numericUpDown1.TabIndex = 36;
+            numericUpDown1.Value = new decimal(new int[] { 5, 0, 0, 0 });
+            // 
+            // button8
+            // 
+            button8.FlatAppearance.BorderSize = 0;
+            button8.FlatStyle = FlatStyle.Flat;
+            button8.ForeColor = SystemColors.ControlDarkDark;
+            button8.Location = new Point(406, 442);
+            button8.Name = "button8";
+            button8.Size = new Size(67, 23);
+            button8.TabIndex = 37;
+            button8.Text = "Mais";
+            button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click;
+            // 
+            // button9
+            // 
+            button9.BackgroundImageLayout = ImageLayout.Stretch;
+            button9.Cursor = Cursors.Hand;
+            button9.FlatStyle = FlatStyle.Flat;
+            button9.Image = (Image)resources.GetObject("button9.Image");
+            button9.Location = new Point(388, 413);
+            button9.Name = "button9";
+            button9.Size = new Size(23, 23);
+            button9.TabIndex = 44;
+            button9.UseVisualStyleBackColor = true;
+            button9.Click += button9_Click;
+            // 
+            // button10
+            // 
+            button10.BackgroundImageLayout = ImageLayout.Stretch;
+            button10.Cursor = Cursors.Hand;
+            button10.FlatStyle = FlatStyle.Flat;
+            button10.Image = (Image)resources.GetObject("button10.Image");
+            button10.Location = new Point(388, 352);
+            button10.Name = "button10";
+            button10.Size = new Size(23, 23);
+            button10.TabIndex = 43;
+            button10.UseVisualStyleBackColor = true;
+            button10.Click += button10_Click;
+            // 
+            // button11
+            // 
+            button11.BackgroundImageLayout = ImageLayout.Stretch;
+            button11.Cursor = Cursors.Hand;
+            button11.FlatStyle = FlatStyle.Flat;
+            button11.Image = (Image)resources.GetObject("button11.Image");
+            button11.Location = new Point(388, 289);
+            button11.Name = "button11";
+            button11.Size = new Size(23, 23);
+            button11.TabIndex = 42;
+            button11.UseVisualStyleBackColor = true;
+            button11.Click += button11_Click;
+            // 
+            // button12
+            // 
+            button12.BackgroundImageLayout = ImageLayout.Stretch;
+            button12.Cursor = Cursors.Hand;
+            button12.FlatStyle = FlatStyle.Flat;
+            button12.Image = (Image)resources.GetObject("button12.Image");
+            button12.Location = new Point(388, 226);
+            button12.Name = "button12";
+            button12.Size = new Size(23, 23);
+            button12.TabIndex = 41;
+            button12.UseVisualStyleBackColor = true;
+            button12.Click += button12_Click;
+            // 
+            // button13
+            // 
+            button13.BackgroundImageLayout = ImageLayout.Stretch;
+            button13.Cursor = Cursors.Hand;
+            button13.FlatStyle = FlatStyle.Flat;
+            button13.Image = (Image)resources.GetObject("button13.Image");
+            button13.Location = new Point(388, 164);
+            button13.Name = "button13";
+            button13.Size = new Size(23, 23);
+            button13.TabIndex = 40;
+            button13.UseVisualStyleBackColor = true;
+            button13.Click += button13_Click;
+            // 
+            // button14
+            // 
+            button14.BackgroundImageLayout = ImageLayout.Stretch;
+            button14.Cursor = Cursors.Hand;
+            button14.FlatStyle = FlatStyle.Flat;
+            button14.Image = (Image)resources.GetObject("button14.Image");
+            button14.Location = new Point(388, 102);
+            button14.Name = "button14";
+            button14.Size = new Size(23, 23);
+            button14.TabIndex = 39;
+            button14.UseVisualStyleBackColor = true;
+            button14.Click += button14_Click;
+            // 
+            // button15
+            // 
+            button15.BackgroundImageLayout = ImageLayout.Stretch;
+            button15.Cursor = Cursors.Hand;
+            button15.FlatStyle = FlatStyle.Flat;
+            button15.Image = (Image)resources.GetObject("button15.Image");
+            button15.Location = new Point(388, 41);
+            button15.Name = "button15";
+            button15.Size = new Size(23, 23);
+            button15.TabIndex = 38;
+            button15.UseVisualStyleBackColor = true;
+            button15.Click += button15_Click;
+            // 
+            // button16
+            // 
+            button16.BackgroundImageLayout = ImageLayout.Stretch;
+            button16.Cursor = Cursors.Hand;
+            button16.FlatStyle = FlatStyle.Flat;
+            button16.Image = Properties.Resources.tik_tok;
+            button16.Location = new Point(359, 413);
+            button16.Name = "button16";
+            button16.Size = new Size(23, 23);
+            button16.TabIndex = 51;
+            button16.UseVisualStyleBackColor = true;
+            button16.Click += button16_Click;
+            // 
+            // button17
+            // 
+            button17.BackgroundImageLayout = ImageLayout.Stretch;
+            button17.Cursor = Cursors.Hand;
+            button17.FlatStyle = FlatStyle.Flat;
+            button17.Image = Properties.Resources.tik_tok;
+            button17.Location = new Point(359, 352);
+            button17.Name = "button17";
+            button17.Size = new Size(23, 23);
+            button17.TabIndex = 50;
+            button17.UseVisualStyleBackColor = true;
+            button17.Click += button17_Click;
+            // 
+            // button18
+            // 
+            button18.BackgroundImageLayout = ImageLayout.Stretch;
+            button18.Cursor = Cursors.Hand;
+            button18.FlatStyle = FlatStyle.Flat;
+            button18.Image = Properties.Resources.tik_tok;
+            button18.Location = new Point(359, 289);
+            button18.Name = "button18";
+            button18.Size = new Size(23, 23);
+            button18.TabIndex = 49;
+            button18.UseVisualStyleBackColor = true;
+            button18.Click += button18_Click;
+            // 
+            // button19
+            // 
+            button19.BackgroundImageLayout = ImageLayout.Stretch;
+            button19.Cursor = Cursors.Hand;
+            button19.FlatStyle = FlatStyle.Flat;
+            button19.Image = Properties.Resources.tik_tok;
+            button19.Location = new Point(359, 226);
+            button19.Name = "button19";
+            button19.Size = new Size(23, 23);
+            button19.TabIndex = 48;
+            button19.UseVisualStyleBackColor = true;
+            button19.Click += button19_Click;
+            // 
+            // button20
+            // 
+            button20.BackgroundImageLayout = ImageLayout.Stretch;
+            button20.Cursor = Cursors.Hand;
+            button20.FlatStyle = FlatStyle.Flat;
+            button20.Image = Properties.Resources.tik_tok;
+            button20.Location = new Point(359, 164);
+            button20.Name = "button20";
+            button20.Size = new Size(23, 23);
+            button20.TabIndex = 47;
+            button20.UseVisualStyleBackColor = true;
+            button20.Click += button20_Click;
+            // 
+            // button21
+            // 
+            button21.BackgroundImageLayout = ImageLayout.Stretch;
+            button21.Cursor = Cursors.Hand;
+            button21.FlatStyle = FlatStyle.Flat;
+            button21.Image = Properties.Resources.tik_tok;
+            button21.Location = new Point(359, 102);
+            button21.Name = "button21";
+            button21.Size = new Size(23, 23);
+            button21.TabIndex = 46;
+            button21.UseVisualStyleBackColor = true;
+            button21.Click += button21_Click;
+            // 
+            // button22
+            // 
+            button22.BackgroundImageLayout = ImageLayout.Stretch;
+            button22.Cursor = Cursors.Hand;
+            button22.FlatStyle = FlatStyle.Flat;
+            button22.Image = Properties.Resources.tik_tok;
+            button22.Location = new Point(359, 41);
+            button22.Name = "button22";
+            button22.Size = new Size(23, 23);
+            button22.TabIndex = 45;
+            button22.UseVisualStyleBackColor = true;
+            button22.Click += button22_Click;
+            // 
             // Contas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(472, 413);
+            ClientSize = new Size(472, 466);
+            Controls.Add(button16);
+            Controls.Add(button17);
+            Controls.Add(button18);
+            Controls.Add(button19);
+            Controls.Add(button20);
+            Controls.Add(button21);
+            Controls.Add(button22);
+            Controls.Add(button9);
+            Controls.Add(button10);
+            Controls.Add(button11);
+            Controls.Add(button12);
+            Controls.Add(button13);
+            Controls.Add(button14);
+            Controls.Add(button15);
+            Controls.Add(button8);
+            Controls.Add(numericUpDown1);
+            Controls.Add(checkBox1);
+            Controls.Add(button7);
+            Controls.Add(pictureBox7);
+            Controls.Add(label13);
+            Controls.Add(label14);
+            Controls.Add(webView27);
             Controls.Add(button6);
             Controls.Add(button5);
             Controls.Add(button4);
@@ -442,8 +760,8 @@
             Controls.Add(label1);
             Controls.Add(webView21);
             MaximizeBox = false;
-            MaximumSize = new Size(488, 452);
-            MinimumSize = new Size(488, 452);
+            MaximumSize = new Size(488, 575);
+            MinimumSize = new Size(488, 505);
             Name = "Contas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Contas";
@@ -460,6 +778,9 @@
             ((System.ComponentModel.ISupportInitialize)webView25).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)webView26).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)webView27).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -498,5 +819,27 @@
         private Button button6;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
+        private Button button7;
+        private PictureBox pictureBox7;
+        private Label label13;
+        private Label label14;
+        private Microsoft.Web.WebView2.WinForms.WebView2 webView27;
+        private CheckBox checkBox1;
+        private NumericUpDown numericUpDown1;
+        private Button button8;
+        private Button button9;
+        private Button button10;
+        private Button button11;
+        private Button button12;
+        private Button button13;
+        private Button button14;
+        private Button button15;
+        private Button button16;
+        private Button button17;
+        private Button button18;
+        private Button button19;
+        private Button button20;
+        private Button button21;
+        private Button button22;
     }
 }

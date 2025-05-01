@@ -15,10 +15,12 @@ namespace Arauto
     public partial class Browser : Form
     {
         int IdConta = -1;
-        public Browser(int IdConta)
+        string URL = "";
+        public Browser(int IdConta, string uRL = "")
         {
             this.IdConta = IdConta;
             InitializeComponent();
+            URL = uRL;
         }
 
         private async void Browser_Load(object sender, EventArgs e)
@@ -29,7 +31,14 @@ namespace Arauto
 
             await webView21.EnsureCoreWebView2Async(environment);
 
-            webView21.CoreWebView2.Navigate("https://myaccount.google.com/?utm_source=OGB&utm_medium=app");
+            if (URL == "")
+            {
+                webView21.CoreWebView2.Navigate("https://myaccount.google.com/?utm_source=OGB&utm_medium=app");
+            }
+            else
+            {
+                webView21.CoreWebView2.Navigate(URL);
+            }
 
             webView21.CoreWebView2.NavigationCompleted += async (sender, e) =>
             {
@@ -54,7 +63,6 @@ namespace Arauto
                     }
                     indice++;
                 }
-
             };
         }
 

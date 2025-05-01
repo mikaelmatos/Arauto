@@ -31,3 +31,5 @@ C:\Users\Mikael\source\repos\Arauto\Arauto\obj\Debug\net6.0-windows\Arauto.Conta
 C:\Users\Mikael\source\repos\Arauto\Arauto\obj\Debug\net6.0-windows\Arauto.Browser.resources
 C:\Users\Mikael\source\repos\Arauto\Arauto\obj\Debug\net6.0-windows\Arauto.Properties.Resources.resources
 C:\Users\Mikael\source\repos\Arauto\Arauto\obj\Debug\net6.0-windows\Arauto.sourcelink.json
+C:\Users\Mikael\source\repos\Arauto\Arauto\obj\Debug\net6.0-windows\Arauto.ConfigConta.resources
+C:\Users\Mikael\source\repos\Arauto\Arauto\bin\Debug\net6.0-windows\Newtonsoft.Json.dll

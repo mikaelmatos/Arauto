@@ -1,4 +1,5 @@
 ﻿using Microsoft.Web.WebView2.Core;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -75,6 +76,7 @@ namespace Arauto
                 if (await Postar())
                 {
                     nTentativa = 1;
+                    File.AppendAllText("REGISTROPOSTADOS.TXT", contaPostagem + ";" + postagem.Titulo.ToUpper() + ";" + postagem.Resumo + ";" + nTentativa + ";" + DateTime.Now + "\r\n");
                     Text = "Postado com sucesso! na tentativa Nº " + nTentativa;
                 }
                 else
@@ -97,6 +99,7 @@ namespace Arauto
 
                     if (result.Contains("https://www.tiktok.com/tiktokstudio/content"))
                     {
+                        File.AppendAllText("REGISTROPOSTADOS.TXT", contaPostagem + ";" + postagem.Titulo.ToUpper() + ";" + postagem.Resumo + ";" + nTentativa + ";" + DateTime.Now + "\r\n");
                         Text = "Postado com sucesso! na tentativa Nº " + nTentativa;
                     }
                     else
@@ -119,11 +122,14 @@ namespace Arauto
 
                         if (result.Contains("https://www.tiktok.com/tiktokstudio/content"))
                         {
+                            File.AppendAllText("REGISTROPOSTADOS.TXT", contaPostagem + ";" + postagem.Titulo.ToUpper() + ";" + postagem.Resumo + ";" + nTentativa + ";" + DateTime.Now + "\r\n");
                             Text = "Postado com sucesso! na tentativa Nº " + nTentativa;
                         }
                         else
                         {
-                            MessageBox.Show("Não postado mesmo com " + nTentativa + " tentativas");
+                            File.AppendAllText("REGISTRONAOPOSTADOS.TXT", contaPostagem + ";" + postagem.Titulo.ToUpper() + ";" + postagem.Resumo + ";" + nTentativa + ";" + "gerado-nao-postado;" + DateTime.Now + "\r\n");
+                            System.Windows.Forms.Application.Exit();
+                            //MessageBox.Show("Não postado mesmo com " + nTentativa + " tentativas");
                         }
                     }
                 }
@@ -131,8 +137,7 @@ namespace Arauto
 
                 File.AppendAllText(DateTime.Now.ToString("yyyyMMdd") + "-" + contaPostagem + "blacklist.log", postagem.Titulo.ToUpper() + ", ");
 
-
-                redatorPai.PostarKwai(postagem);
+                redatorPai.LoopPostagem(postagem);
 
                 this.Close();
             };
@@ -141,13 +146,23 @@ namespace Arauto
         {
             try
             {
+                Configuracao configuracao = null;
+
+                if (File.Exists("configs/conf-" + contaPostagem + ".mjson"))
+                {
+                    StreamReader stream = new StreamReader("configs/conf-" + contaPostagem + ".mjson");
+                    string conteudoConf = stream.ReadToEnd();
+                    stream.Close();
+
+                    configuracao = JsonConvert.DeserializeObject<Configuracao>(conteudoConf);
+                }
+
                 string script = "document.getElementsByTagName(\"body\")[0].innerHTML.includes(\"Quando publicar\")";
                 string result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
 
                 Random rand = new Random();
                 int delay = rand.Next(2000, 3000);
                 await Task.Delay(delay);
-
 
                 script = "document.getElementsByClassName('upload-stage-btn')[0].click();";
                 await webView21.ExecuteScriptAsync(script);
@@ -166,18 +181,28 @@ namespace Arauto
 
                 await Task.Delay(delay * 4);
 
-
                 script = "document.querySelectorAll('button[aria-label=\"Hashtag\"]')[0].click();";
                 await webView21.ExecuteScriptAsync(script);
                 await Task.Delay(delay);
 
-                if (contaPostagem == 3)
+                SendKeys.Send("{BACKSPACE}");
+
+                //if (contaPostagem == 3)
+                //{
+                //    SendKeys.Send(" #jogodasaude #treino #dieta");
+                //}
+                //else if (contaPostagem == 7)
+                //{
+                //    SendKeys.Send(" #healthgame #health #tips");
+                //}
+                //else
+                //{
+                //    SendKeys.Send(" #noticia #tiktoknews");
+                //}
+
+                if (configuracao != null)
                 {
-                    SendKeys.Send("jogodasaude #treino #dieta");
-                }
-                else
-                {
-                    SendKeys.Send("noticia #tiktoknews");
+                    SendKeys.Send(" " + configuracao.tags);
                 }
 
                 await Task.Delay(100);
@@ -193,13 +218,11 @@ namespace Arauto
                     SendKeys.Send("^v"); await Task.Delay(delay);
                 }
 
-                Text = "Postando!";
-
                 script = "document.querySelectorAll('button[data-e2e=\"post_video_button\"]')[0].click();";
 
                 await webView21.ExecuteScriptAsync(script);
 
-                Text = "Postado!";
+                Text = "Postando...";
 
                 await Task.Delay(25000);
 
