@@ -6,7 +6,7 @@
   "idioma": "Inglês",
   "prompt_gerar_noticia": "I want a health tip or fun fact, just a title and a paragraph. ",
   "prompt_gerar_imagem": "Gere uma imagem sobre isso no estilo videogame antigo [não precisa usar o texto todo se for muito longo, foco na imagem e criatividade, faça estilo pixel art porem voxel 3d, com os pixels do mesmo tamanho]",
-  "tags": "#health.game",
+  "tags": "#health.game #health",
   "chamada": "Share this video, leave your like.",
   "conta_ativa": true
 }

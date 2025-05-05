@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -144,6 +145,13 @@ namespace Arauto
                 this.Close();
             };
         }
+
+        private const int MOUSEEVENTF_LEFTDOWN = 0x02;
+        private const int MOUSEEVENTF_LEFTUP = 0x04;
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+        public static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
+
         public async Task<bool> Postar()
         {
             try
@@ -188,6 +196,10 @@ namespace Arauto
                 await Task.Delay(delay);
 
                 SendKeys.Send("{BACKSPACE}");
+                await Task.Delay(delay);
+                SendKeys.Send(" ");
+                await Task.Delay(800);
+
 
                 //if (contaPostagem == 3)
                 //{
@@ -204,7 +216,16 @@ namespace Arauto
 
                 if (configuracao != null)
                 {
-                    SendKeys.Send(" " + configuracao.tags);
+                    foreach (string tag in configuracao.tags.Split('#'))
+                    {
+                        if (tag.Trim() != "")
+                        {
+                            SendKeys.Send("#" + tag.Replace("#", "").Trim());
+                            await Task.Delay(4500);
+                            SendKeys.Send("{TAB}");
+                            await Task.Delay(1200);
+                        }
+                    }
                 }
 
                 await Task.Delay(100);
@@ -220,13 +241,89 @@ namespace Arauto
                     SendKeys.Send("^v"); await Task.Delay(delay);
                 }
 
+
+
+                //Parte do editor de video
+
+                script = "document.getElementsByClassName('TUXButton')[0].click();";
+                result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+                await Task.Delay(delay * 2);
+
+                script = "document.getElementsByClassName('music-card-container')[0]?.childNodes[0]?.dispatchEvent(new MouseEvent('mouseover', { view: window, bubbles: true, cancelable: true }));";
+                result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+                await Task.Delay(delay * 2);
+
+                script = "document.getElementsByClassName('music-card-container')[0].childNodes[0].childNodes[1].childNodes[0].click();";
+                result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+                await Task.Delay(delay * 2);
+
+                script = "document.getElementsByClassName('audioOperation')[0].childNodes[0].click();";
+                result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+                await Task.Delay(delay);
+
+                var resultCoo = await webView21.ExecuteScriptAsync(@"
+(function() {
+    var el = document.getElementsByClassName('scaleInput')[1];
+    if (!el) return null;
+    var rect = el.getBoundingClientRect();
+    return {
+        x: rect.left + rect.width / 15,
+        y: rect.top + rect.height / 2
+    };
+})()
+");
+
+                Point cursorAntes = Cursor.Position;
+
+                if (resultCoo != "null")
+                {
+                    // Remove aspas extras e desserializa
+                    var cleaned = resultCoo.Trim('"').Replace("\\\"", "\"");
+                    var coords = System.Text.Json.JsonSerializer.Deserialize<Coords>(cleaned);
+
+                    var webViewPos = webView21.PointToScreen(System.Drawing.Point.Empty);
+
+                    int screenX = webViewPos.X + (int)coords.x;
+                    int screenY = webViewPos.Y + (int)coords.y;
+
+                    Cursor.Position = new System.Drawing.Point(screenX, screenY);
+
+                    mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+                    mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+
+                    await Task.Delay(300);
+                    Cursor.Position = cursorAntes;
+                }
+
+
+
+
+
+                await Task.Delay(delay);
+                script = "document.getElementsByClassName('audioOperation')[0].childNodes[0].click();";
+                result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+
+                await Task.Delay(1000);
+                SendKeys.Send("{TAB}");
+                await Task.Delay(400);
+
+
+                script = "document.getElementsByClassName('common-modal-footer')[0].childNodes[1].click();";
+                await webView21.ExecuteScriptAsync(script);
+                await Task.Delay(7000);
+
+
+                //Parte do editor de video
+
+
+
                 script = "document.querySelectorAll('button[data-e2e=\"post_video_button\"]')[0].click();";
 
                 await webView21.ExecuteScriptAsync(script);
 
                 Text = "Postando...";
 
-                await Task.Delay(25000);
+                await Task.Delay(20000);
 
                 script = "window.location.href";
                 result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
@@ -258,5 +355,10 @@ namespace Arauto
 
 
         private Microsoft.Web.WebView2.WinForms.WebView2 webView21;
+    }
+    public class Coords
+    {
+        public double x { get; set; }
+        public double y { get; set; }
     }
 }

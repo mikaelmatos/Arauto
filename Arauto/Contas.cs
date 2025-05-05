@@ -6,12 +6,14 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 using System.Security.Claims;
 using System.Security.Policy;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Arauto.Redator;
 using static System.Windows.Forms.AxHost;
 
 namespace Arauto
@@ -24,7 +26,8 @@ namespace Arauto
         }
 
         private async void Contas_Load(object sender, EventArgs e)
-        {
+        {           
+
             Obterconta1();
             Obterconta2();
             Obterconta3();
@@ -471,7 +474,7 @@ namespace Arauto
             if (checkBox1.Checked && numericUpDown1.Value > 1)
             {
                 numericUpDown1.Value--;
-                Redator redator = new Redator(this);
+                Redator redator = new Redator(this, checkBox2.Checked ? (int)numericUpDown2.Value : -1);
                 redator.ShowDialog();
 
                 timer1.Stop();

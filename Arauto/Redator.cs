@@ -36,14 +36,6 @@ namespace Arauto
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-            //Postagem postagem = new Postagem();
-            //postagem.Titulo = "Falecimento do Papa Francisco marca o dia 21 de abril de 2025";
-            //postagem.Resumo = "O Papa Francisco faleceu nesta segunda-feira, 21 de abril de 2025, aos 88 anos, na residência Domus Sanctae Marthae, no Vaticano. A causa da morte foi um acidente vascular cerebral que resultou em insuficiência cardíaca irreversível. O funeral será realizado na Basílica de Santa Maria Maior, em Roma, conforme desejo do pontífice. Este evento encerra um papado de 12 anos e inicia o processo para a escolha de seu sucessor, com o conclave podendo começar a partir de 6 de maio.";
-            //postagem.Imagem = "";
-
-            //Postador postador = new Postador(postagem,4);
-            //postador.Show();
-
             int larguraTela = Screen.PrimaryScreen.Bounds.Width;
             int alturaTela = Screen.PrimaryScreen.Bounds.Height;
             int larguraJanela = this.Width;
@@ -212,8 +204,12 @@ namespace Arauto
                     titulo = result.Split('\n')[0].Replace("\\n", "\\").Split('\\')[0].Replace("Título: ", "").Replace("Title: ", "").Replace(": ", " ").Trim('"');
                     resumo = result.Split('\n')[0].Trim('"').Replace("\\n", "\\").Split('\\')[1].Replace("\\nParagraph:", "").Replace("Paragraph:", "").Trim('"');
 
-                    resumo = resumo.Replace(resumo.Split('.')[resumo.Split('.').Count() - 1], "");
-                    resumo = resumo.Replace("Você gosta desta personalidade?", "");
+                    try
+                    {
+                        resumo = resumo.Replace(resumo.Split('.')[resumo.Split('.').Count() - 1], "");
+                        resumo = resumo.Replace("Você gosta desta personalidade?", "");
+                    }
+                    catch (Exception ex) { }
 
                     if (titulo == "")
                     {
@@ -257,7 +253,7 @@ namespace Arauto
 
                     titulo = RemoverCaracteresInvalidos(titulo);
                 }
-                catch
+                catch (Exception erro)
                 {
                     Application.Restart();
                 }
@@ -292,7 +288,8 @@ namespace Arauto
 
                 if (result.Trim().ToLower() == "true")
                 {
-                    Application.Restart();
+                    ContasPai.LoopPostagem();
+                    //Application.Restart();
                 }
 
                 SendKeys.Send(phrase);
@@ -363,6 +360,11 @@ namespace Arauto
                 }
                 catch
                 {
+
+                    string scriptErro = "document.getElementsByTagName(\"body\")[0].innerHTML.includes(\"atingiu o limite\")";
+                    string resultErro = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+
+
                     Application.Restart();
                 }
 
@@ -477,7 +479,8 @@ namespace Arauto
                 Directory.CreateDirectory("narracao");
             }
 
-            string[] chaves = new string[14];
+            #region
+            string[] chaves = new string[91];
             chaves[0] = "sk_ec8ae644a856030565a24f6b48c2a1177c0e8b86b12a28dd";//mikaelroquematos
             chaves[1] = "sk_83b1bdf1bd31ec72410974ad278a1e10191fad68009114a5";//robokwai3
             chaves[2] = "sk_727c1ff47bcf7f9c1cb6ebc66439de43ddc0e80f8d910f8d";//robokwai2
@@ -494,7 +497,86 @@ namespace Arauto
             chaves[12] = "sk_7484f1f54e438fa7dc661c51e4ab3258c2ef91adb28529ec"; //Descartavel
             chaves[13] = "sk_7e2abeb66db9f1a99cd2f96484050efd89cd8d5b42ba6f0b"; //Descartavel
 
-            int indice = new Random().Next(10, 14);
+            chaves[14] = "sk_98d0a2cf97301d7483c4e1128348d751e0af5c9cca03bd93"; //Descartavel
+            chaves[15] = "sk_50fc4629e72c4b4e7f266adb3e5c3df6e536bff8c9eb6d87"; //Descartavel
+            chaves[16] = "sk_c76abbe32411bfa5db1c8cf9dd3bfd9687d2a417ea5dd50e"; //Descartavel
+            chaves[17] = "sk_98d0a2cf97301d7483c4e1128348d751e0af5c9cca03bd93"; //Descartavel
+            chaves[18] = "sk_e65d38f4f44b0cfae5a3050e8abce1445d0412e7853d5593"; //Descartavel
+            chaves[19] = "sk_4ae2222aa30d980b8b2152300a782fa2fe793b0d8770296e"; //Descartavel
+            chaves[20] = "sk_cfe2aff2abfde4376ab06525b3c7e587db0f18557d543df5"; //Descartavel
+            chaves[21] = "sk_677688d1eace38a9abdca3965c54c0a342c5cc7f49949bf1"; //Descartavel
+            chaves[22] = "sk_1c78b988a85b99719d7620a3d483f6115529503c4521ea61"; //Descartavel
+            chaves[23] = "sk_ca3851459bf8407e734a42aeb3b00ed8299f4f25e9f51c01"; //Descartavel
+            chaves[24] = "sk_11e9bbba8c2d46c4baafee2328c9ce7a3a66bd4bebb81c0b"; //Descartavel
+            chaves[25] = "sk_8918991ed441ae35890ce0104cc746bc3d8c50a13d3e1591"; //Descartavel
+            chaves[26] = "sk_85b269d4a9b06ff68ff3347e70a128b71fb6e84d6b211037"; //Descartavel
+            chaves[27] = "sk_e878b474dc35d49673fc6d8e61425879f8b49dcc226fa2c4"; //Descartavel
+            chaves[28] = "sk_7109ef1a18cd3c89887f08ccbf666e090886757ebef278be"; //Descartavel
+            chaves[29] = "sk_ef624fb43e4d00f7aa0aed482f4277b160489a3a292b748d"; //Descartavel
+            chaves[30] = "sk_02ed75d1033ddd86ab4f93543eebe2219bd8e4de17858ddf"; //Descartavel
+            chaves[31] = "sk_45568fca0ed5eeaa5a6e437d4525c3c1a9e2db861ff753aa"; //Descartavel
+            chaves[32] = "sk_981a7d1667103240658f7f0de5c066d335c85b4cadc641bb"; //Descartavel
+            chaves[33] = "sk_80f39235b7085b3bd220410b1fb687bddaa97aaa999e75c3"; //Descartavel
+            chaves[34] = "sk_ba8590825b1dfb4ab7682ba3ddcd7278f6dd2b8064f79ec9"; //Descartavel
+            chaves[35] = "sk_416a4b6e61a0f829d9d535a479e86f947418fc1bd36e5ef4"; //Descartavel
+            chaves[36] = "sk_0f9e25a83d11a83a110668a553496f88a73b71577867d37d"; //Descartavel
+            chaves[37] = "sk_8f377f16948a90ec9714bd6903eeec447f0f6a35b41ebe0e"; //Descartavel
+            chaves[38] = "sk_71a36ed6b3f17868f482029bd65bed7bd4b2f3c60576731d"; //Descartavel
+            chaves[39] = "sk_f5ea038c2440a62a575eef1caf6aba9959fa925dc7aa9dcb"; //Descartavel
+            chaves[40] = "sk_921aa4a381b09870cf26eb51cfac3b3085c43bccf019be0b"; //Descartavel
+            chaves[41] = "sk_3a191cb338e1082d036733690bf2db2b9a9c68984f5073ca"; //Descartavel
+            chaves[42] = "sk_8d771f83346af3bd1e19189017aca4c1d80622464e3b345d"; //Descartavel
+            chaves[43] = "sk_5aceaac2860242baa6f4f6d44e18bc65da119c05970eb896"; //Descartavel
+            chaves[44] = "sk_2b3f8343636f4d0acd4b80af31b42b024e24df87816f0791"; //Descartavel
+            chaves[45] = "sk_126aed54fa44d84741ee9ba885884827a7b481e0c72b1f8a"; //Descartavel
+            chaves[46] = "sk_d96b77d85aec322c23c7b5a4c5806669b2e2fa82a10eb0d5"; //Descartavel
+            chaves[47] = "sk_0676c3bb0a3a1c492fc4a95638da2eeab7ce58d581895353"; //Descartavel
+            chaves[48] = "sk_be6cabb3a4f56a234995def96a9c4b6742b64f408bbf2ee6"; //Descartavel
+            chaves[49] = "sk_9de81b070ac477adcdb6bcd61609c7bef7e56bcf8c1a76a0"; //Descartavel
+            chaves[50] = "sk_25ab061424957be8c86ea351b7a14d3754819f9c88e9e1a9"; //Descartavel
+            chaves[51] = "sk_c9c8a2696b4aba118a547d6be72bfc57a834f060ce750671"; //Descartavel
+            chaves[52] = "sk_1372aa865f25cf1bd39f60952d953b8089651c777c1ce1d2"; //Descartavel
+            chaves[53] = "sk_f796dbcf54e83016ab78fe8669988ad8ba37532bbdddfbd4"; //Descartavel
+            chaves[54] = "sk_2e41f607776c3f66eb9cdbea3abd3e591215f4fd812809a4"; //Descartavel
+            chaves[55] = "sk_69d34760c7d79a9fb2afc47d2149c7d0cee327f277b86001"; //Descartavel
+            chaves[56] = "sk_b7115c6f395af43583a7d8f22ed4e6e9416b48fd2c8fd838"; //Descartavel
+            chaves[57] = "sk_10b37950512c20bae476d6dd52bd0ca2e153c073a3851565"; //Descartavel
+            chaves[58] = "sk_8a1aee6ccf01b9a5a294c5b6998c092d31c62c0d5f5256f3"; //Descartavel
+            chaves[59] = "sk_7573054e7236152c341eb5a8112b4fe9e948e6043a0cf50b"; //Descartavel
+            chaves[60] = "sk_bf14c56b5b4d8d85a13edf58f6169e0967d9acb5d32aca84"; //Descartavel
+            chaves[61] = "sk_4d61743004be32985098e5a197650b668f487059fc58360a"; //Descartavel
+            chaves[62] = "sk_72b8171e56728ea65a4c4a56eb87e4b3dd8c876d8c96bc16"; //Descartavel
+            chaves[63] = "sk_ac3fb968e4a3e15a4394c66b9c6d2ca32da71e28f0dfabf2"; //Descartavel
+            chaves[64] = "sk_15901cebc7852c1573b8dfbfe928eb5666456a464eec175b"; //Descartavel
+            chaves[65] = "sk_5895d020596c83a78d0e3405939438e904d9800c1dc9d66d"; //Descartavel
+            chaves[66] = "sk_77e7570371b54a21037e8a30115813116baeb902dd5d0415"; //Descartavel
+            chaves[67] = "sk_5e51445c7952fb0ace70a04fe9d0239a6707b9f3abc3d2de"; //Descartavel
+            chaves[68] = "sk_925f5b0467bc2ef99bef70b9d30a4d3a0537d1af53ea28e6"; //Descartavel
+            chaves[69] = "sk_5f0407984903605692726188104a57e39a48567e0ea1e226"; //Descartavel
+            chaves[70] = "sk_d2998ca5ed89dce701a1843f6ca0fb7b3183b03bff70e3fa"; //Descartavel
+            chaves[71] = "sk_e23fed9511289b8cd1dd9d74ee6e996168d592dc7fcefcb6"; //Descartavel
+            chaves[72] = "sk_5255b95ea87f391e4d01165bb758af6373d150993161f687"; //Descartavel
+            chaves[73] = "sk_f760939ae407e61979f4f0e53b5c7a0d206f24ed88cb112f"; //Descartavel
+            chaves[74] = "sk_f8870d2d4ce3126d78121a3fff871e630054f2a4d1b37bbf"; //Descartavel
+            chaves[75] = "sk_df55a3db15eae9e9067ad2019d2fc5f604309f000aedca44"; //Descartavel
+            chaves[76] = "sk_d1f55ee0877b34704ecc6d4e35ac7531836c9a778e81261d"; //Descartavel
+            chaves[77] = "sk_e024b03f13e845c5dcb4a39024bef2708df4a44b8659e373"; //Descartavel
+            chaves[78] = "sk_aa0baa115b7a1771b5125a03d723203839fbdb7d2601a4eb"; //Descartavel
+            chaves[79] = "sk_5e8a11ec9399cef700e0f4c40e5bbedd71fdbcc7ce5b2829"; //Descartavel
+            chaves[80] = "sk_193b4467ad525ee807416a49777bc3c934bf8c85c5e9ceaa"; //Descartavel
+            chaves[81] = "sk_7320836c8ae7e73e1b296f84ba64213978b92de7056de313"; //Descartavel
+            chaves[82] = "sk_b96416e93ea1a19387c955078a81c801a8d06ee5de33ca68"; //Descartavel
+            chaves[83] = "sk_8c7360943fb3741e852fb71a071bd887d7df954bd6480d72"; //Descartavel
+            chaves[84] = "sk_b312b33548f197a32af576ea6998d360e76e9484df2574b8"; //Descartavel
+            chaves[85] = "sk_f6672519226b99a2c766ef0c01cac8c016582465f042af3e"; //Descartavel
+            chaves[86] = "sk_3b8d46f351a6ac93a323b569ed52c0104fb71dc792d85752"; //Descartavel
+            chaves[87] = "sk_192dc010e35cee35c6cc251a675b2ea019914ceec26ed9c6"; //Descartavel
+            chaves[88] = "sk_fb00c73a286ed97e50946d099b5fff115599aa0a45427385"; //Descartavel
+            chaves[89] = "sk_449e2ecd45f023bdf376f95af4ad24a3399c22688a3843f2"; //Descartavel
+            chaves[90] = "sk_f1d667dc732ff26080cfdbe6657e2d95daa81951db91bf1d"; //Descartavel
+            #endregion
+
+            int indice = new Random().Next(0, 91);
 
             string ApiKey = chaves[indice]; //Depois botar todas e incluir mais
 
