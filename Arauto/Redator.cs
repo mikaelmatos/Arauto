@@ -36,6 +36,31 @@ namespace Arauto
 
         private async void Form1_Load(object sender, EventArgs e)
         {
+            List<int> IDsAtivos = new List<int>();
+
+            for (int i = 1; i < 8; i++)
+            {
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/configs/conf-" + i + ".mjson"))
+                {
+                    StreamReader stream = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/configs/conf-" + i + ".mjson");
+                    string conteudoConf = stream.ReadToEnd();
+                    stream.Close();
+
+                    Configuracao conf = JsonConvert.DeserializeObject<Configuracao>(conteudoConf);
+
+                    if (conf.conta_ativa)
+                    {
+                        IDsAtivos.Add(i);
+                    }
+                }
+            }
+
+            if (IDsAtivos.Count == 0)
+            {
+                MessageBox.Show("Ative pelo menos uma conta");
+                this.Close();
+            }
+
             int larguraTela = Screen.PrimaryScreen.Bounds.Width;
             int alturaTela = Screen.PrimaryScreen.Bounds.Height;
             int larguraJanela = this.Width;
@@ -64,9 +89,9 @@ namespace Arauto
 
             Configuracao configuracao = null;
 
-            if (File.Exists("configs/conf-" + contaPostagem + ".mjson"))
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/configs/conf-" + contaPostagem + ".mjson"))
             {
-                StreamReader stream = new StreamReader("configs/conf-" + contaPostagem + ".mjson");
+                StreamReader stream = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/configs/conf-" + contaPostagem + ".mjson");
                 string conteudoConf = stream.ReadToEnd();
                 stream.Close();
 
@@ -77,9 +102,9 @@ namespace Arauto
             {
                 contaPostagem = new Random().Next(1, 8);
 
-                if (File.Exists("configs/conf-" + contaPostagem + ".mjson"))
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/configs/conf-" + contaPostagem + ".mjson"))
                 {
-                    StreamReader stream = new StreamReader("configs/conf-" + contaPostagem + ".mjson");
+                    StreamReader stream = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/configs/conf-" + contaPostagem + ".mjson");
                     string conteudoConf = stream.ReadToEnd();
                     stream.Close();
 
@@ -89,9 +114,9 @@ namespace Arauto
 
             string blackList = "";
 
-            if (File.Exists(DateTime.Now.ToString("yyyyMMdd") + "-" + contaPostagem + "blacklist.log"))
+            if (File.Exists(Path.GetTempPath() + DateTime.Now.ToString("yyyyMMdd") + "-" + contaPostagem + "blacklist.log"))
             {
-                StreamReader streamReader = new StreamReader(DateTime.Now.ToString("yyyyMMdd") + "-" + contaPostagem + "blacklist.log");
+                StreamReader streamReader = new StreamReader(Path.GetTempPath() + DateTime.Now.ToString("yyyyMMdd") + "-" + contaPostagem + "blacklist.log");
                 string blackListTexto = streamReader.ReadToEnd().Trim().Trim(',').Trim().Trim(',').Trim().Trim(',').Trim().Trim(',');
 
                 if (blackListTexto != "")
@@ -104,7 +129,7 @@ namespace Arauto
 
             DateTime horaIni = DateTime.Now;
 
-            int conta = new Random().Next(1, 8);
+            int conta = IDsAtivos[new Random().Next(0, IDsAtivos.Count)];
 
             string userDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "WebView2UserData0" + conta);//1,2 3,4,5 ou 6
 
@@ -118,303 +143,330 @@ namespace Arauto
 
             webView21.CoreWebView2.NavigationCompleted += async (sender, e) =>
             {
-                Random rand = new Random();
-                int delay = rand.Next(1000, 2000);
-                await Task.Delay(delay);
 
-                string phrase = "Qual a noticia mais importante do dia, resuma em um paragrafo com titulo e resumo, use texto sem caracteres estranhos e sem citar fonte [apenas texto, sem imagem ou thumb][números e datas por extenso] " + blackList;
+                string checaLogado = "document.getElementsByTagName('button')[3].innerText";
 
-                //conta = 3: jogo da saude (pt-br)
-                //conta = 4: esportes
-                //conta = 5: hora news
-                //conta = 6: atitude positiva
-                //conta = 7: jogo da saude(en - us)
+                string resultLogado = await webView21.CoreWebView2.ExecuteScriptAsync(checaLogado);
 
-                Text += " - Conta Postagem: " + contaPostagem;
-
-                //if (contaPostagem == 3)
-                //{
-                //    phrase = "Quero uma dica de saúde ou curiosidade surpreendente e chamativa, apenas um titulo e um paragrafo " + blackList;
-                //}
-
-                //if (contaPostagem == 4)
-                //{
-                //    phrase = "Qual a noticia mais importante do dia sobre futebol, resuma em um paragrafo com titulo e resumo, use texto sem caracteres estranhos e sem citar fonte [apenas texto, sem imagem ou thumb][números e datas por extenso] " + blackList;
-                //}
-
-                //if (contaPostagem == 6)
-                //{
-                //    phrase = "Qual a noticia mais importante do dia sobre famosos, resuma em um paragrafo com titulo e resumo, use texto sem caracteres estranhos e sem citar fonte [apenas texto, sem imagem ou thumb][números e datas por extenso] " + blackList;
-                //}
-
-                //if (contaPostagem == 7)
-                //{
-                //    phrase = "I want a health tip or fun fact, just a title and a paragraph. " + blackList;
-                //}
-
-                if (configuracao != null)
+                if (resultLogado.Contains("Entrar") || resultLogado.Contains("Login"))
                 {
-                    phrase = configuracao.prompt_gerar_noticia + " " + blackList;
+                    MessageBox.Show("Faça login com o Google no chatGPT para obter os roteiros e imagens.");
                 }
-
-                Clipboard.SetText(phrase);
-                await Task.Delay(500);
-                SendKeys.Send("^v");
-
-                await Task.Delay(delay);
-
-                string script = "document.querySelectorAll('button[aria-label=\"Enviar prompt\"]')[0].click();";
-                string result = "";
-
-                await webView21.ExecuteScriptAsync(script);
-
-                await Task.Delay(delay);
-
-                bool liberar1 = true;
-
-                while (liberar1)
+                else
                 {
-                    script = "document.getElementsByTagName(\"body\")[0].innerHTML.includes(\"Iniciar modo voz\")";
 
-                    result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
 
-                    if (result.Trim().ToLower() == "false")
-                    {
-                        await Task.Delay(delay);
-                    }
-                    else
-                    {
-                        liberar1 = false;
-                    }
-                }
+                    Random rand = new Random();
+                    int delay = rand.Next(1000, 2000);
+                    await Task.Delay(delay);
 
-                await Task.Delay(delay);
+                    string phrase = "Qual a noticia mais importante do dia, resuma em um paragrafo com titulo e resumo, use texto sem caracteres estranhos e sem citar fonte [apenas texto, sem imagem ou thumb][números e datas por extenso] " + blackList;
 
-                script = "document.getElementsByTagName(\"body\")[0].innerHTML.replace(\"O ChatGPT disse:\",\"¬\").split('¬')[1]";
-                result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
-                result = result.Replace(@"\u003C", "<");
+                    //conta = 3: jogo da saude (pt-br)
+                    //conta = 4: esportes
+                    //conta = 5: hora news
+                    //conta = 6: atitude positiva
+                    //conta = 7: jogo da saude(en - us)
 
-                result = Regex.Replace(result, "<[^>]+>", "");
-
-                string titulo = "";
-                string resumo = "";
-
-                try
-                {
-                    titulo = result.Split('\n')[0].Replace("\\n", "\\").Split('\\')[0].Replace("Título: ", "").Replace("Title: ", "").Replace(": ", " ").Trim('"');
-                    resumo = result.Split('\n')[0].Trim('"').Replace("\\n", "\\").Split('\\')[1].Replace("\\nParagraph:", "").Replace("Paragraph:", "").Trim('"');
-
-                    try
-                    {
-                        resumo = resumo.Replace(resumo.Split('.')[resumo.Split('.').Count() - 1], "");
-                        resumo = resumo.Replace("Você gosta desta personalidade?", "");
-                    }
-                    catch (Exception ex) { }
-
-                    if (titulo == "")
-                    {
-                        titulo = result.Split('\n')[0].Trim('\\').Trim('"').Replace("\\n", "\\").Split('\\')[1].Replace("\\nParagraph:", "").Replace("Paragraph:", "").Trim('\\').Trim('"');
-                    }
-
-                    if (resumo == "")
-                    {
-                        resumo = result.Replace(titulo, "").Replace("\\nParagraph:", "").Replace("Paragraph:", "").Replace("Título: ", "").Replace("Title: ", "").Replace("\\n", "").Replace("\\\"", "").Trim('"').Trim('\n').Trim().Trim('"').Trim('\n').Trim().Trim('"').Trim('\n').Trim();
-                    }
-
-                    if (resumo.Contains("4owindow"))
-                    {
-                        resumo = resumo.Replace("4owindow", "¬").Split('¬')[0];
-                    }
-
-                    if (resumo.Contains("window"))
-                    {
-                        resumo = resumo.Replace("window", "¬").Split('¬')[0];
-                    }
+                    Text += " - Conta Postagem: " + contaPostagem;
 
                     //if (contaPostagem == 3)
                     //{
-                    //    resumo = resumo + " Compartilhe este vídeo, deixe seu like e entre no jogo da saúde";
+                    //    phrase = "Quero uma dica de saúde ou curiosidade surpreendente e chamativa, apenas um titulo e um paragrafo " + blackList;
                     //}
 
                     //if (contaPostagem == 4)
                     //{
-                    //    resumo = resumo + " Compartilhe este vídeo, deixe seu like";
+                    //    phrase = "Qual a noticia mais importante do dia sobre futebol, resuma em um paragrafo com titulo e resumo, use texto sem caracteres estranhos e sem citar fonte [apenas texto, sem imagem ou thumb][números e datas por extenso] " + blackList;
+                    //}
+
+                    //if (contaPostagem == 6)
+                    //{
+                    //    phrase = "Qual a noticia mais importante do dia sobre famosos, resuma em um paragrafo com titulo e resumo, use texto sem caracteres estranhos e sem citar fonte [apenas texto, sem imagem ou thumb][números e datas por extenso] " + blackList;
                     //}
 
                     //if (contaPostagem == 7)
                     //{
-                    //    resumo = resumo + " Share this video, leave your like.";
+                    //    phrase = "I want a health tip or fun fact, just a title and a paragraph. " + blackList;
                     //}
 
                     if (configuracao != null)
                     {
-                        resumo = resumo + " " + configuracao.chamada;
+                        phrase = configuracao.prompt_gerar_noticia + " " + blackList;
                     }
 
-                    titulo = RemoverCaracteresInvalidos(titulo);
-                }
-                catch (Exception erro)
-                {
-                    Application.Restart();
-                }
+                    Clipboard.SetText(phrase);
+                    await Task.Delay(500);
+                    SendKeys.Send("^v");
 
-                await Task.Delay(delay * 4);
+                    await Task.Delay(delay);
 
-                phrase = "Gere uma imagem sobre a noticia apenas com o titulo e uma chamada, com um fundo atras desfocado que esteja relacionado ao tema";
+                    string script = "document.querySelectorAll('button[aria-label=\"Enviar prompt\"]')[0].click();";
+                    string result = "";
 
-                //if (contaPostagem == 3)
-                //{
-                //    phrase = "Gere uma imagem sobre isso no estilo videogame antigo [não precisa usar o texto todo se for muito longo, foco na imagem e criatividade, faça estilo pixel art, com os pixels do mesmo tamanho]";
-                //}
+                    await webView21.ExecuteScriptAsync(script);
 
-                //if (contaPostagem == 4)
-                //{
-                //    phrase = "Gere uma imagem sobre a noticia apenas com o titulo e uma chamada, que esteja relacionado ao tema, use os símbolos dos times ou outros recursos visuais criativos, use estética futebolística, no estilo pixel art com todos os pixels do mesmo tamanho";
-                //}
+                    await Task.Delay(delay);
 
-                //if (contaPostagem == 7)
-                //{
-                //    phrase = "Gere uma imagem sobre isso no estilo videogame antigo [não precisa usar o texto todo se for muito longo, foco na imagem e criatividade, faça estilo pixel art, com os pixels do mesmo tamanho]";
-                //}
+                    bool liberar1 = true;
 
-                if (configuracao != null)
-                {
-                    phrase = configuracao.prompt_gerar_imagem + " Se houver textos que seja no idioma " + configuracao.idioma;
-                }
+                    while (liberar1)
+                    {
+                        script = "document.getElementsByTagName(\"body\")[0].innerHTML.includes(\"Iniciar modo voz\")";
 
-                script = "document.getElementsByTagName(\"body\")[0].innerHTML.includes(\"feedback\")";
+                        result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
 
-                result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+                        if (result.Trim().ToLower() == "false")
+                        {
+                            await Task.Delay(delay);
+                        }
+                        else
+                        {
+                            liberar1 = false;
+                        }
+                    }
 
-                if (result.Trim().ToLower() == "true")
-                {
-                    ContasPai.LoopPostagem();
-                    //Application.Restart();
-                }
+                    await Task.Delay(delay);
 
-                SendKeys.Send(phrase);
-                await Task.Delay(delay);
+                    script = "document.getElementsByTagName(\"body\")[0].innerHTML.replace(\"O ChatGPT disse:\",\"¬\").split('¬')[1]";
+                    result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+                    result = result.Replace(@"\u003C", "<");
 
-                script = "document.querySelectorAll('button[aria-label=\"Enviar prompt\"]')[0].click();";
-                await webView21.ExecuteScriptAsync(script);
+                    result = Regex.Replace(result, "<[^>]+>", "");
 
-                await Task.Delay(delay * 2);
+                    string titulo = "";
+                    string resumo = "";
 
-                bool liberar = true;
+                    try
+                    {
+                        titulo = result.Split('\n')[0].Replace("\\n", "\\").Split('\\')[0].Replace("Título: ", "").Replace("Title: ", "").Replace(": ", " ").Trim('"');
+                        resumo = result.Split('\n')[0].Trim('"').Replace("\\n", "\\").Split('\\')[1].Replace("\\nParagraph:", "").Replace("Paragraph:", "").Trim('"');
 
-                while (liberar)
-                {
-                    script = @"document.getElementsByTagName(""body"")[0].innerHTML.includes('aria-label=""Gerando imagem…""')";
+                        try
+                        {
+                            resumo = resumo.Replace(resumo.Split('.')[resumo.Split('.').Count() - 1], "");
+                            resumo = resumo.Replace("Você gosta desta personalidade?", "");
+                        }
+                        catch (Exception ex) { }
+
+                        if (titulo == "")
+                        {
+                            titulo = result.Split('\n')[0].Trim('\\').Trim('"').Replace("\\n", "\\").Split('\\')[1].Replace("\\nParagraph:", "").Replace("Paragraph:", "").Trim('\\').Trim('"');
+                        }
+
+                        if (resumo == "")
+                        {
+                            resumo = result.Replace(titulo, "").Replace("\\nParagraph:", "").Replace("Paragraph:", "").Replace("Título: ", "").Replace("Title: ", "").Replace("\\n", "").Replace("\\\"", "").Trim('"').Trim('\n').Trim().Trim('"').Trim('\n').Trim().Trim('"').Trim('\n').Trim();
+                        }
+
+                        if (resumo.Contains("4owindow"))
+                        {
+                            resumo = resumo.Replace("4owindow", "¬").Split('¬')[0];
+                        }
+
+                        if (resumo.Contains("window"))
+                        {
+                            resumo = resumo.Replace("window", "¬").Split('¬')[0];
+                        }
+
+                        //if (contaPostagem == 3)
+                        //{
+                        //    resumo = resumo + " Compartilhe este vídeo, deixe seu like e entre no jogo da saúde";
+                        //}
+
+                        //if (contaPostagem == 4)
+                        //{
+                        //    resumo = resumo + " Compartilhe este vídeo, deixe seu like";
+                        //}
+
+                        //if (contaPostagem == 7)
+                        //{
+                        //    resumo = resumo + " Share this video, leave your like.";
+                        //}
+
+                        if (configuracao != null)
+                        {
+                            resumo = resumo + " " + configuracao.chamada;
+                        }
+
+                        if (titulo.Contains("+"))
+                        {
+                            titulo = titulo.Split("+")[0];
+                        }
+
+                        titulo = RemoverCaracteresInvalidos(titulo);
+                    }
+                    catch (Exception erro)
+                    {
+                        ContasPai.LoopPostagem();
+                        //Application.Restart();
+                    }
+
+                    await Task.Delay(delay * 4);
+
+                    phrase = "Gere uma imagem sobre a noticia apenas com o titulo e uma chamada, com um fundo atras desfocado que esteja relacionado ao tema";
+
+                    //if (contaPostagem == 3)
+                    //{
+                    //    phrase = "Gere uma imagem sobre isso no estilo videogame antigo [não precisa usar o texto todo se for muito longo, foco na imagem e criatividade, faça estilo pixel art, com os pixels do mesmo tamanho]";
+                    //}
+
+                    //if (contaPostagem == 4)
+                    //{
+                    //    phrase = "Gere uma imagem sobre a noticia apenas com o titulo e uma chamada, que esteja relacionado ao tema, use os símbolos dos times ou outros recursos visuais criativos, use estética futebolística, no estilo pixel art com todos os pixels do mesmo tamanho";
+                    //}
+
+                    //if (contaPostagem == 7)
+                    //{
+                    //    phrase = "Gere uma imagem sobre isso no estilo videogame antigo [não precisa usar o texto todo se for muito longo, foco na imagem e criatividade, faça estilo pixel art, com os pixels do mesmo tamanho]";
+                    //}
+
+                    if (configuracao != null)
+                    {
+                        phrase = configuracao.prompt_gerar_imagem + " Se houver textos que seja no idioma " + configuracao.idioma;
+                    }
+
+                    script = "document.getElementsByTagName(\"body\")[0].innerHTML.includes(\"feedback\")";
+
                     result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
 
                     if (result.Trim().ToLower() == "true")
                     {
-                        await Task.Delay(delay);
+                        //ContasPai.LoopPostagem();
+                        //Application.Restart();
+
+                        titulo = titulo.Replace("ChatGPTResposta 1", "¬").Split('¬')[1];
                     }
-                    else
+
+                    SendKeys.Send(phrase);
+                    await Task.Delay(delay);
+
+                    script = "document.querySelectorAll('button[aria-label=\"Enviar prompt\"]')[0].click();";
+                    await webView21.ExecuteScriptAsync(script);
+
+                    await Task.Delay(delay * 2);
+
+                    bool liberar = true;
+
+                    while (liberar)
                     {
-                        liberar = false;
+                        script = @"document.getElementsByTagName(""body"")[0].innerHTML.includes('aria-label=""Gerando imagem…""')";
+                        result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+
+                        if (result.Trim().ToLower() == "true")
+                        {
+                            await Task.Delay(delay);
+                        }
+                        else
+                        {
+                            liberar = false;
+                        }
                     }
-                }
 
-                liberar1 = true;
+                    liberar1 = true;
 
-                while (liberar1)
-                {
-                    script = "document.getElementsByTagName(\"body\")[0].innerHTML.includes(\"Iniciar modo voz\")";
-
-                    result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
-
-                    if (result.Trim().ToLower() == "false")
+                    while (liberar1)
                     {
-                        await Task.Delay(delay);
+                        script = "document.getElementsByTagName(\"body\")[0].innerHTML.includes(\"Iniciar modo voz\")";
+
+                        result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+
+                        if (result.Trim().ToLower() == "false")
+                        {
+                            await Task.Delay(delay);
+                        }
+                        else
+                        {
+                            liberar1 = false;
+                        }
                     }
-                    else
+
+                    await Task.Delay(delay * 10);
+
+                    script = "document.getElementsByTagName(\"body\")[0].innerHTML.replace(\"O ChatGPT disse:\",\"¬\").split('¬')[1]";
+                    string imagem = "";
+
+                    try
                     {
-                        liberar1 = false;
+                        result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+                        result = result.Replace(@"\u003C", "<");
+                        result = result.Replace("\\", "");
+                        imagem = result.Replace("src=", "¬").Split('¬')[1].Split('"')[1].Replace("&amp;", "&");
+
+                        if (imagem.Contains("favicon"))
+                        {
+                            imagem = result.Replace("src=", "¬").Split('¬')[2].Split('"')[1].Replace("&amp;", "&");
+                        }
+
+                        if (!imagem.Contains("https"))
+                        {
+                            string scriptErro = "document.getElementsByTagName(\"body\")[0].innerHTML.includes(\"limite de criação\")";
+                            string resultErro = await webView21.CoreWebView2.ExecuteScriptAsync(scriptErro);
+
+
+                            //File.AppendAllText("REGISTRONAOPOSTADOS.TXT", contaPostagem + ";" + titulo.ToUpper() + ";" + resumo + ";" + 0 + ";" + "problema-ao-gerar-imagem;" + DateTime.Now + "\r\n");
+                            //Application.Exit();
+                            ContasPai.LoopPostagem();
+                        }
                     }
-                }
-
-                await Task.Delay(delay * 10);
-
-                script = "document.getElementsByTagName(\"body\")[0].innerHTML.replace(\"O ChatGPT disse:\",\"¬\").split('¬')[1]";
-                string imagem = "";
-
-                try
-                {
-                    result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
-                    result = result.Replace(@"\u003C", "<");
-                    result = result.Replace("\\", "");
-                    imagem = result.Replace("src=", "¬").Split('¬')[1].Split('"')[1].Replace("&amp;", "&");
-
-                    if (imagem.Contains("favicon"))
+                    catch
                     {
-                        imagem = result.Replace("src=", "¬").Split('¬')[2].Split('"')[1].Replace("&amp;", "&");
+                        string scriptErro = "document.getElementsByTagName(\"body\")[0].innerHTML.includes(\"limite de criação\")";
+                        string resultErro = await webView21.CoreWebView2.ExecuteScriptAsync(scriptErro);
+
+                        ContasPai.LoopPostagem();
+                        //Application.Restart();
                     }
 
-                    if (!imagem.Contains("https"))
+                    Postagem postagem = new Postagem();
+                    postagem.Titulo = titulo;
+                    postagem.Resumo = resumo;
+                    postagem.Imagem = imagem;
+                    postagem.DataHora = DateTime.Now;
+                    postagem.DataInicio = horaIni;
+
+                    string json = System.Text.Json.JsonSerializer.Serialize(postagem, new JsonSerializerOptions { WriteIndented = true });
+
+                    if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/json"))
                     {
-                        File.AppendAllText("REGISTRONAOPOSTADOS.TXT", contaPostagem + ";" + titulo.ToUpper() + ";" + resumo + ";" + 0 + ";" + "problema-ao-gerar-imagem;" + DateTime.Now + "\r\n");
-                        Application.Exit();
+                        Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/json");
                     }
-                }
-                catch
-                {
 
-                    string scriptErro = "document.getElementsByTagName(\"body\")[0].innerHTML.includes(\"atingiu o limite\")";
-                    string resultErro = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/json/" + titulo.ToUpper() + ".json", CorrigirJson(json));
 
-
-                    Application.Restart();
-                }
-
-                Postagem postagem = new Postagem();
-                postagem.Titulo = titulo;
-                postagem.Resumo = resumo;
-                postagem.Imagem = imagem;
-                postagem.DataHora = DateTime.Now;
-                postagem.DataInicio = horaIni;
-
-                string json = System.Text.Json.JsonSerializer.Serialize(postagem, new JsonSerializerOptions { WriteIndented = true });
-
-                if (!Directory.Exists("json"))
-                {
-                    Directory.CreateDirectory("json");
-                }
-
-                File.AppendAllText("json/" + titulo.ToUpper() + ".json", CorrigirJson(json));
-
-                if (!await GerarWav2(ConversorNumeros.SubstituirNumerosPorExtenso(titulo + "! " + resumo.Replace(".", "!")), "narracao/" + titulo.ToUpper() + ".wav"))
-                {
-                    string idioma = (configuracao != null) ? configuracao.idioma : "Português";
-
-                    if (idioma == "Português")
+                    if (!await GerarWav2(ConversorNumeros.SubstituirNumerosPorExtenso(titulo + "! " + resumo.Replace(".", "!")), Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/narracao/" + titulo.ToUpper() + ".wav"))
                     {
-                        GerarWav(titulo + "! " + resumo.Replace(".", "!"), titulo.ToUpper() + ".wav");
+                        string idioma = (configuracao != null) ? configuracao.idioma : "Português";
+
+                        if (idioma == "Português")
+                        {
+                            GerarWav(titulo + "! " + resumo.Replace(".", "!"), titulo.ToUpper() + ".wav");
+                        }
+                        else
+                        {
+                            GerarWavEn(titulo + "! " + resumo.Replace(".", "!"), titulo.ToUpper() + ".wav");
+                        }
                     }
-                    else
+
+                    try
                     {
-                        GerarWavEn(titulo + "! " + resumo.Replace(".", "!"), titulo.ToUpper() + ".wav");
+                        await CriarVideoComAudioEImagemAsync(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/narracao/" + titulo.ToUpper() + ".wav", imagem, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/video-bruto", titulo.ToUpper());
                     }
-                }
+                    catch
+                    {
+                        //File.AppendAllText("REGISTRONAOPOSTADOS.TXT", contaPostagem + ";" + postagem.Titulo.ToUpper() + ";" + postagem.Resumo + ";" + 0 + ";" + "problema-ao-gerar-video;" + DateTime.Now + "\r\n");
 
-                try
-                {
-                    await CriarVideoComAudioEImagemAsync("narracao/" + titulo.ToUpper() + ".wav", imagem, "video-bruto", titulo.ToUpper());
-                }
-                catch
-                {
-                    File.AppendAllText("REGISTRONAOPOSTADOS.TXT", contaPostagem + ";" + postagem.Titulo.ToUpper() + ";" + postagem.Resumo + ";" + 0 + ";" + "problema-ao-gerar-video;" + DateTime.Now + "\r\n");
+                        //Application.Exit();
+                        ContasPai.LoopPostagem();
+                    }
 
-                    Application.Exit();
-                }
+                    string caminhoVideo = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/video-bruto", titulo.ToUpper() + ".mp4");
 
-                string caminhoVideo = Path.Combine("video-bruto", titulo.ToUpper() + ".mp4");
-
-                if (File.Exists(caminhoVideo))
-                {
-                    Postador postador = new Postador(postagem, contaPostagem, this);
-                    postador.Show();
+                    if (File.Exists(caminhoVideo))
+                    {
+                        Postador postador = new Postador(postagem, contaPostagem, this);
+                        postador.Show();
+                    }
                 }
             };
         }
@@ -426,8 +478,8 @@ namespace Arauto
         }
         public void LoopPostagem(Postagem postagem)
         {
+            MatarNavegadoresObsoletos.KillUnusedWebView2Processes();
             ContasPai.LoopPostagem();
-
             this.Close();
         }
 
@@ -474,9 +526,9 @@ namespace Arauto
 
         public static async Task<bool> GerarWav2(string texto, string caminhoArquivoSaida)
         {
-            if (!Directory.Exists("narracao"))
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/narracao"))
             {
-                Directory.CreateDirectory("narracao");
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/narracao");
             }
 
             #region
@@ -626,13 +678,13 @@ namespace Arauto
             dynamic voz = Activator.CreateInstance(Type.GetTypeFromProgID("SAPI.SpVoice"));
             dynamic stream = Activator.CreateInstance(Type.GetTypeFromProgID("SAPI.SpFileStream"));
 
-            if (!Directory.Exists("narracao"))
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/narracao"))
             {
-                Directory.CreateDirectory("narracao");
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/narracao");
             }
 
             const int SSFMCreateForWrite = 3;
-            stream.Open("narracao/" + caminhoWav, SSFMCreateForWrite, false);
+            stream.Open(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/narracao/" + caminhoWav, SSFMCreateForWrite, false);
 
             voz.AudioOutputStream = stream;
             voz.Rate = velocidade;
@@ -658,13 +710,13 @@ namespace Arauto
             dynamic voz = Activator.CreateInstance(Type.GetTypeFromProgID("SAPI.SpVoice"));
             dynamic stream = Activator.CreateInstance(Type.GetTypeFromProgID("SAPI.SpFileStream"));
 
-            if (!Directory.Exists("narracao"))
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/narracao"))
             {
-                Directory.CreateDirectory("narracao");
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/narracao");
             }
 
             const int SSFMCreateForWrite = 3;
-            stream.Open("narracao/" + caminhoWav, SSFMCreateForWrite, false);
+            stream.Open(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/narracao/" + caminhoWav, SSFMCreateForWrite, false);
 
             voz.AudioOutputStream = stream;
             voz.Rate = velocidade;

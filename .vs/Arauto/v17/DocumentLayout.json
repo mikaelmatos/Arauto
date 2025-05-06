@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Mikael\\source\\repos\\Arauto\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|c:\\users\\mikael\\source\\repos\\arauto\\arauto\\postador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|solutionrelative:arauto\\postador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|c:\\users\\mikael\\source\\repos\\arauto\\arauto\\redator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|solutionrelative:arauto\\redator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|c:\\users\\mikael\\source\\repos\\arauto\\arauto\\contas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|solutionrelative:arauto\\contas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|c:\\users\\mikael\\source\\repos\\arauto\\arauto\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|solutionrelative:arauto\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|c:\\users\\mikael\\source\\repos\\arauto\\arauto\\redator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|solutionrelative:arauto\\redator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|C:\\Users\\Mikael\\source\\repos\\Arauto\\arauto\\redator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -30,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,39 +30,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\Program.cs",
-              "RelativeDocumentMoniker": "Arauto\\Program.cs",
-              "ToolTip": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\Program.cs",
-              "RelativeToolTip": "Arauto\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-04T10:45:13.742Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Redator.cs",
               "DocumentMoniker": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\Redator.cs",
               "RelativeDocumentMoniker": "Arauto\\Redator.cs",
               "ToolTip": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\Redator.cs",
               "RelativeToolTip": "Arauto\\Redator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQBAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAALoBAAAAAAAAAAAowMoBAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-04T10:43:42.704Z",
+              "WhenOpened": "2025-05-06T14:55:31.251Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Redator.cs [Projeto]",
-              "DocumentMoniker": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\Redator.cs",
-              "RelativeDocumentMoniker": "Arauto\\Redator.cs",
-              "ToolTip": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\Redator.cs [Projeto]",
-              "RelativeToolTip": "Arauto\\Redator.cs [Projeto]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T21:28:34.726Z"
             },
             {
               "$type": "Document",
@@ -80,22 +49,21 @@
               "RelativeDocumentMoniker": "Arauto\\Contas.cs",
               "ToolTip": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\Contas.cs",
               "RelativeToolTip": "Arauto\\Contas.cs",
-              "ViewState": "AgIAANcBAAAAAAAAAAA6wOsBAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAADMCAAAAAAAAAAAwwEoCAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-04T10:38:07.107Z"
+              "WhenOpened": "2025-05-06T09:03:23.13Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Postador.cs",
-              "DocumentMoniker": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\Postador.cs",
-              "RelativeDocumentMoniker": "Arauto\\Postador.cs",
-              "ToolTip": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\Postador.cs",
-              "RelativeToolTip": "Arauto\\Postador.cs",
-              "ViewState": "AgIAAP8AAAAAAAAAAAAqwA0BAAAmAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "Redator.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\Redator.cs",
+              "RelativeDocumentMoniker": "Arauto\\Redator.cs",
+              "ToolTip": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\Redator.cs [Projeto]",
+              "RelativeToolTip": "Arauto\\Redator.cs [Projeto]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T21:56:35.832Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-06T15:03:51.712Z"
             }
           ]
         }

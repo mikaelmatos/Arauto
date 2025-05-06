@@ -621,6 +621,7 @@
             // 
             button16.BackgroundImageLayout = ImageLayout.Stretch;
             button16.Cursor = Cursors.Hand;
+            button16.Enabled = false;
             button16.FlatStyle = FlatStyle.Flat;
             button16.Image = Properties.Resources.tik_tok;
             button16.Location = new Point(359, 413);
@@ -634,6 +635,7 @@
             // 
             button17.BackgroundImageLayout = ImageLayout.Stretch;
             button17.Cursor = Cursors.Hand;
+            button17.Enabled = false;
             button17.FlatStyle = FlatStyle.Flat;
             button17.Image = Properties.Resources.tik_tok;
             button17.Location = new Point(359, 352);
@@ -647,6 +649,7 @@
             // 
             button18.BackgroundImageLayout = ImageLayout.Stretch;
             button18.Cursor = Cursors.Hand;
+            button18.Enabled = false;
             button18.FlatStyle = FlatStyle.Flat;
             button18.Image = Properties.Resources.tik_tok;
             button18.Location = new Point(359, 289);
@@ -660,6 +663,7 @@
             // 
             button19.BackgroundImageLayout = ImageLayout.Stretch;
             button19.Cursor = Cursors.Hand;
+            button19.Enabled = false;
             button19.FlatStyle = FlatStyle.Flat;
             button19.Image = Properties.Resources.tik_tok;
             button19.Location = new Point(359, 226);
@@ -673,6 +677,7 @@
             // 
             button20.BackgroundImageLayout = ImageLayout.Stretch;
             button20.Cursor = Cursors.Hand;
+            button20.Enabled = false;
             button20.FlatStyle = FlatStyle.Flat;
             button20.Image = Properties.Resources.tik_tok;
             button20.Location = new Point(359, 164);
@@ -686,6 +691,7 @@
             // 
             button21.BackgroundImageLayout = ImageLayout.Stretch;
             button21.Cursor = Cursors.Hand;
+            button21.Enabled = false;
             button21.FlatStyle = FlatStyle.Flat;
             button21.Image = Properties.Resources.tik_tok;
             button21.Location = new Point(359, 102);
@@ -699,6 +705,7 @@
             // 
             button22.BackgroundImageLayout = ImageLayout.Stretch;
             button22.Cursor = Cursors.Hand;
+            button22.Enabled = false;
             button22.FlatStyle = FlatStyle.Flat;
             button22.Image = Properties.Resources.tik_tok;
             button22.Location = new Point(359, 41);

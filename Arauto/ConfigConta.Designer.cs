@@ -181,6 +181,7 @@
             // button1
             // 
             button1.Cursor = Cursors.Hand;
+            button1.Enabled = false;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Location = new Point(436, 528);
             button1.Name = "button1";
@@ -193,6 +194,7 @@
             // button2
             // 
             button2.Cursor = Cursors.Hand;
+            button2.Enabled = false;
             button2.FlatStyle = FlatStyle.Flat;
             button2.Location = new Point(306, 528);
             button2.Name = "button2";

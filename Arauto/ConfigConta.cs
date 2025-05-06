@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
@@ -30,9 +31,9 @@ namespace Arauto
         {
             string blackList = "";
 
-            if (File.Exists(DateTime.Now.ToString("yyyyMMdd") + "-" + idConta + "blacklist.log"))
+            if (File.Exists(Path.GetTempPath() + DateTime.Now.ToString("yyyyMMdd") + "-" + idConta + "blacklist.log"))
             {
-                StreamReader streamReader = new StreamReader(DateTime.Now.ToString("yyyyMMdd") + "-" + idConta + "blacklist.log");
+                StreamReader streamReader = new StreamReader(Path.GetTempPath() + DateTime.Now.ToString("yyyyMMdd") + "-" + idConta + "blacklist.log");
                 string blackListTexto = streamReader.ReadToEnd().Trim().Trim(',').Trim().Trim(',').Trim().Trim(',').Trim().Trim(',');
 
                 if (blackListTexto != "")
@@ -46,14 +47,14 @@ namespace Arauto
 
             string conteudoConf = "";
 
-            if (!Directory.Exists("configs"))
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/configs"))
             {
-                Directory.CreateDirectory("configs");
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/configs");
             }
 
-            if (File.Exists("configs/conf-" + idConta + ".mjson"))
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/configs/conf-" + idConta + ".mjson"))
             {
-                StreamReader stream = new StreamReader("configs/conf-" + idConta + ".mjson");
+                StreamReader stream = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/configs/conf-" + idConta + ".mjson");
                 conteudoConf = stream.ReadToEnd();
                 stream.Close();
 
@@ -88,8 +89,27 @@ namespace Arauto
                 string script = "document.getElementsByTagName(\"h1\")[0].innerText";
                 string result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
 
-                label4.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
+                if (result.Contains("Google"))
+                {
+                    button1.Enabled = false;
+                    button2.Enabled = false;
+                    label4.Text = "null";
+                }
+                else
+                {
+                    button1.Enabled = true;
+                    button2.Enabled = true;
+                    label4.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
+                }
 
+                
+                webView21.Dispose();
+                webView21 = null;
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                GC.Collect();
+
+                
             };
 
             await webView22.EnsureCoreWebView2Async(environment);
@@ -125,10 +145,19 @@ namespace Arauto
 
                 if (textBox4.Text == "")
                 {
-                    textBox4.Text = result.Replace("@", "#").Replace("\"", "");
+                    if (result.Trim() != "null")
+                    {
+                        textBox4.Text = result.Replace("@", "#").Replace("\"", "");
+                    }
                 }
 
-            };
+
+                webView22.Dispose();
+                webView22 = null;
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                GC.Collect();
+            };         
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -151,21 +180,21 @@ namespace Arauto
                 Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
             };
 
-            if (!configuracao.nome_conta_google.Contains("Carregando") && !configuracao.nome_conta_tiktok.Contains("Carregando"))
+            if (!configuracao.nome_conta_google.Contains("Carregando") && !configuracao.nome_conta_tiktok.Contains("Carregando") && !configuracao.nome_conta_tiktok.Contains("null") && !configuracao.nome_conta_google.Contains("null"))
             {
                 if (configuracao.prompt_gerar_noticia.Length > 50 && configuracao.prompt_gerar_imagem.Length > 50)
                 {
-                    if (File.Exists("configs/conf-" + idConta + ".mjson"))
+                    if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/configs/conf-" + idConta + ".mjson"))
                     {
-                        File.Move("configs/conf-" + idConta + ".mjson", "configs/conf-" + idConta + "_old.mjson");
+                        File.Move(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/configs/conf-" + idConta + ".mjson", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/configs/conf-" + idConta + "_old.mjson");
                     }
 
                     string json = System.Text.Json.JsonSerializer.Serialize(configuracao, options);
-                    File.AppendAllText("configs/conf-" + idConta + ".mjson", json);
+                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/configs/conf-" + idConta + ".mjson", json);
 
-                    if (File.Exists("configs/conf-" + idConta + "_old.mjson"))
+                    if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/configs/conf-" + idConta + "_old.mjson"))
                     {
-                        File.Delete("configs/conf-" + idConta + "_old.mjson");
+                        File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/configs/conf-" + idConta + "_old.mjson");
                     }
                 }
                 else
@@ -173,11 +202,18 @@ namespace Arauto
                     MessageBox.Show("Os prompts precisam ter no mínimo 50 caracteres");
                 }
 
-                MessageBox.Show("Salvo! " + "configs/conf-" + idConta + ".mjson");
+                MessageBox.Show("Salvo! " + Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/configs/conf-" + idConta + ".mjson");
             }
             else
             {
-                MessageBox.Show("Aguarde o carregamento");
+                if (!configuracao.nome_conta_tiktok.Contains("null") && !configuracao.nome_conta_google.Contains("null"))
+                {
+                    MessageBox.Show("Faça login no Google para configurar");
+                }
+                else
+                {
+                    MessageBox.Show("Aguarde o carregamento");
+                }
             }
         }
 

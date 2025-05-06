@@ -79,7 +79,7 @@ namespace Arauto
                 if (await Postar())
                 {
                     nTentativa = 1;
-                    File.AppendAllText("REGISTROPOSTADOS.TXT", contaPostagem + ";" + postagem.Titulo.ToUpper() + ";" + postagem.Resumo + ";" + nTentativa + ";" + DateTime.Now + "\r\n");
+                    //File.AppendAllText("REGISTROPOSTADOS.TXT", contaPostagem + ";" + postagem.Titulo.ToUpper() + ";" + postagem.Resumo + ";" + nTentativa + ";" + DateTime.Now + "\r\n");
                     Text = "Postado com sucesso! na tentativa Nº " + nTentativa;
                 }
                 else
@@ -92,7 +92,7 @@ namespace Arauto
 
                     await webView21.ExecuteScriptAsync(script);
 
-                    File.AppendAllText(DateTime.Now.ToString("yyyyMMdd") + "-" + contaPostagem + "blacklist.log", postagem.Titulo.ToUpper() + ", ");
+                    File.AppendAllText(Path.GetTempPath() + DateTime.Now.ToString("yyyyMMdd") + "-" + contaPostagem + "blacklist.log", postagem.Titulo.ToUpper() + ", ");
                     Text = "Postado!";
 
                     await Task.Delay(25000);
@@ -102,7 +102,7 @@ namespace Arauto
 
                     if (result.Contains("https://www.tiktok.com/tiktokstudio/content"))
                     {
-                        File.AppendAllText("REGISTROPOSTADOS.TXT", contaPostagem + ";" + postagem.Titulo.ToUpper() + ";" + postagem.Resumo + ";" + nTentativa + ";" + DateTime.Now + "\r\n");
+                        //File.AppendAllText("REGISTROPOSTADOS.TXT", contaPostagem + ";" + postagem.Titulo.ToUpper() + ";" + postagem.Resumo + ";" + nTentativa + ";" + DateTime.Now + "\r\n");
                         Text = "Postado com sucesso! na tentativa Nº " + nTentativa;
                     }
                     else
@@ -115,7 +115,7 @@ namespace Arauto
 
                         await webView21.ExecuteScriptAsync(script);
 
-                        File.AppendAllText(DateTime.Now.ToString("yyyyMMdd") + "-" + contaPostagem + "blacklist.log", postagem.Titulo.ToUpper() + ", ");
+                        File.AppendAllText(Path.GetTempPath() + DateTime.Now.ToString("yyyyMMdd") + "-" + contaPostagem + "blacklist.log", postagem.Titulo.ToUpper() + ", ");
                         Text = "Postado!";
 
                         await Task.Delay(25000);
@@ -125,12 +125,12 @@ namespace Arauto
 
                         if (result.Contains("https://www.tiktok.com/tiktokstudio/content"))
                         {
-                            File.AppendAllText("REGISTROPOSTADOS.TXT", contaPostagem + ";" + postagem.Titulo.ToUpper() + ";" + postagem.Resumo + ";" + nTentativa + ";" + DateTime.Now + "\r\n");
+                            //File.AppendAllText("REGISTROPOSTADOS.TXT", contaPostagem + ";" + postagem.Titulo.ToUpper() + ";" + postagem.Resumo + ";" + nTentativa + ";" + DateTime.Now + "\r\n");
                             Text = "Postado com sucesso! na tentativa Nº " + nTentativa;
                         }
                         else
                         {
-                            File.AppendAllText("REGISTRONAOPOSTADOS.TXT", contaPostagem + ";" + postagem.Titulo.ToUpper() + ";" + postagem.Resumo + ";" + nTentativa + ";" + "gerado-nao-postado;" + DateTime.Now + "\r\n");
+                            //File.AppendAllText("REGISTRONAOPOSTADOS.TXT", contaPostagem + ";" + postagem.Titulo.ToUpper() + ";" + postagem.Resumo + ";" + nTentativa + ";" + "gerado-nao-postado;" + DateTime.Now + "\r\n");
                             System.Windows.Forms.Application.Exit();
                             //MessageBox.Show("Não postado mesmo com " + nTentativa + " tentativas");
                         }
@@ -138,7 +138,9 @@ namespace Arauto
                 }
                 await Task.Delay(5000);
 
-                File.AppendAllText(DateTime.Now.ToString("yyyyMMdd") + "-" + contaPostagem + "blacklist.log", postagem.Titulo.ToUpper() + ", ");
+                File.AppendAllText(Path.GetTempPath() + DateTime.Now.ToString("yyyyMMdd") + "-" + contaPostagem + "blacklist.log", postagem.Titulo.ToUpper() + ", ");
+
+                WindowState = FormWindowState.Minimized;
 
                 redatorPai.LoopPostagem(postagem);
 
@@ -158,9 +160,9 @@ namespace Arauto
             {
                 Configuracao configuracao = null;
 
-                if (File.Exists("configs/conf-" + contaPostagem + ".mjson"))
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/configs/conf-" + contaPostagem + ".mjson"))
                 {
-                    StreamReader stream = new StreamReader("configs/conf-" + contaPostagem + ".mjson");
+                    StreamReader stream = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/configs/conf-" + contaPostagem + ".mjson");
                     string conteudoConf = stream.ReadToEnd();
                     stream.Close();
 
@@ -177,7 +179,10 @@ namespace Arauto
                 script = "document.getElementsByClassName('upload-stage-btn')[0].click();";
                 await webView21.ExecuteScriptAsync(script);
 
-                string pastaAtual = AppDomain.CurrentDomain.BaseDirectory.Replace("/", "\\") + "video-bruto\\";
+                //string pastaAtual = AppDomain.CurrentDomain.BaseDirectory.Replace("/", "\\") + "video-bruto\\";
+
+                string pastaAtual=  Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\video-bruto\\";
+
                 await Task.Delay(2000);
 
                 SendKeys.Send(pastaAtual + postagem.Titulo.ToUpper() + ".mp4");

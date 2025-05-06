@@ -26,7 +26,7 @@ namespace Arauto
         }
 
         private async void Contas_Load(object sender, EventArgs e)
-        {           
+        {
 
             Obterconta1();
             Obterconta2();
@@ -35,6 +35,11 @@ namespace Arauto
             Obterconta5();
             Obterconta6();
             Obterconta7();
+        }
+
+        public bool VerificarCarregamento()
+        {
+            return (webView21 == null && webView22 == null && webView23 == null && webView24 == null && webView25 == null && webView26 == null && webView27 == null);
         }
 
         public async void Obterconta1()
@@ -80,13 +85,28 @@ namespace Arauto
                     script = "document.getElementsByTagName(\"h1\")[0].innerText";
                     result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
 
-                    label2.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
+                    if (result.Contains("Google"))
+                    {
+                        button22.Enabled = false;
+                        label2.Text = "Faça login no Google";
+                    }
+                    else
+                    {
+                        button22.Enabled = true;
+                        label2.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
+                    }
                 }
                 catch (Exception ex)
                 {
                     //MessageBox.Show("Erro ao carregar imagem: " + ex.Message);
                 }
 
+                webView21.Dispose();
+                webView21 = null;
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                GC.Collect();
+                
             };
         }
 
@@ -133,13 +153,29 @@ namespace Arauto
                     script = "document.getElementsByTagName(\"h1\")[0].innerText";
                     result = await webView22.CoreWebView2.ExecuteScriptAsync(script);
 
-                    label3.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
+                    if (result.Contains("Google"))
+                    {
+                        button21.Enabled = false;
+                        label3.Text = "Faça login no Google";
+                    }
+                    else
+                    {
+                        button21.Enabled = true;
+                        label3.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
+                    }
+
                 }
                 catch (Exception ex)
                 {
                     //MessageBox.Show("Erro ao carregar imagem: " + ex.Message);
                 }
 
+                webView22.Dispose();
+                webView22 = null;
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                GC.Collect();
+                
             };
         }
 
@@ -186,13 +222,28 @@ namespace Arauto
                     script = "document.getElementsByTagName(\"h1\")[0].innerText";
                     result = await webView23.CoreWebView2.ExecuteScriptAsync(script);
 
-                    label5.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
+                    if (result.Contains("Google"))
+                    {
+                        button20.Enabled = false;
+                        label5.Text = "Faça login no Google";
+                    }
+                    else
+                    {
+                        button20.Enabled = true;
+                        label5.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
+                    }
                 }
                 catch (Exception ex)
                 {
                     //MessageBox.Show("Erro ao carregar imagem: " + ex.Message);
                 }
 
+                webView23.Dispose();
+                webView23 = null;
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                GC.Collect();
+                
             };
         }
 
@@ -239,13 +290,28 @@ namespace Arauto
                     script = "document.getElementsByTagName(\"h1\")[0].innerText";
                     result = await webView24.CoreWebView2.ExecuteScriptAsync(script);
 
-                    label7.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
+                    if (result.Contains("Google"))
+                    {
+                        button19.Enabled = false;
+                        label7.Text = "Faça login no Google";
+                    }
+                    else
+                    {
+                        button19.Enabled = true;
+                        label7.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
+                    }
                 }
                 catch (Exception ex)
                 {
                     //MessageBox.Show("Erro ao carregar imagem: " + ex.Message);
                 }
 
+                webView24.Dispose();
+                webView24 = null;
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                GC.Collect();
+                
             };
         }
 
@@ -292,13 +358,28 @@ namespace Arauto
                     script = "document.getElementsByTagName(\"h1\")[0].innerText";
                     result = await webView25.CoreWebView2.ExecuteScriptAsync(script);
 
-                    label9.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
+                    if (result.Contains("Google"))
+                    {
+                        button18.Enabled = false;
+                        label9.Text = "Faça login no Google";
+                    }
+                    else
+                    {
+                        button18.Enabled = true;
+                        label9.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
+                    }
                 }
                 catch (Exception ex)
                 {
                     //MessageBox.Show("Erro ao carregar imagem: " + ex.Message);
                 }
 
+                webView25.Dispose();
+                webView25 = null;
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                GC.Collect();
+                
             };
         }
 
@@ -345,13 +426,28 @@ namespace Arauto
                     script = "document.getElementsByTagName(\"h1\")[0].innerText";
                     result = await webView26.CoreWebView2.ExecuteScriptAsync(script);
 
-                    label11.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
+                    if (result.Contains("Google"))
+                    {
+                        button17.Enabled = false;
+                        label11.Text = "Faça login no Google";
+                    }
+                    else
+                    {
+                        button17.Enabled = true;
+                        label11.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
+                    }
                 }
                 catch (Exception ex)
                 {
                     //MessageBox.Show("Erro ao carregar imagem: " + ex.Message);
                 }
 
+                webView26.Dispose();
+                webView26 = null;
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                GC.Collect();
+                
             };
         }
         public async void Obterconta7()
@@ -397,13 +493,29 @@ namespace Arauto
                     script = "document.getElementsByTagName(\"h1\")[0].innerText";
                     result = await webView27.CoreWebView2.ExecuteScriptAsync(script);
 
-                    label13.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
+                    if (result.Contains("Google"))
+                    {
+                        button16.Enabled = false;
+                        label13.Text = "Faça login no Google";
+                    }
+                    else
+                    {
+                        button16.Enabled = true;
+                        label13.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
+                    }
+
                 }
                 catch (Exception ex)
                 {
                     //MessageBox.Show("Erro ao carregar imagem: " + ex.Message);
                 }
 
+                webView27.Dispose();
+                webView27 = null;
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                GC.Collect();
+                
             };
         }
 
@@ -488,8 +600,18 @@ namespace Arauto
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Redator redator = new Redator(this, checkBox2.Checked ? (int)numericUpDown2.Value : -1);
-            redator.ShowDialog();
+            if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/configs"))
+            {
+                int quantidadeArquivos = Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/configs").Length;
+
+                if (quantidadeArquivos > 0)
+                {
+                    Redator redator = new Redator(this, checkBox2.Checked ? (int)numericUpDown2.Value : -1);
+                    redator.ShowDialog();
+                }
+            }
+
+            Text = "Contas";
 
             timer1.Stop();
             timer2.Stop();
@@ -501,10 +623,20 @@ namespace Arauto
             {
                 Text = "Contas (" + regresssiva + ")";
                 regresssiva--;
+
+                if (VerificarCarregamento())
+                {
+                    MatarNavegadoresObsoletos.KillUnusedWebView2Processes();
+                }
             }
             else
             {
                 Text = "Contas";
+
+                if (!VerificarCarregamento())
+                {
+                    Text += " - Internet lenta...";
+                }
 
                 timer1.Stop();
                 timer2.Stop();

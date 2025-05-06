@@ -4,7 +4,7 @@
   "nome_conta_tiktok": "@neutrino.news",
   "nicho": "Curiosidades",
   "idioma": "Português",
-  "prompt_gerar_noticia": "Me diga uma curiosidade fascinante ou fato interessante e surpreendente sobre o espaço apenas um paragrafo com titulo\n\n [Não fale sobre chuvas de diamante]\n",
+  "prompt_gerar_noticia": "Me diga uma curiosidade fascinante ou fato interessante e surpreendente sobre o espaço apenas um paragrafo com titulo\n\n [Não fale sobre chuvas de diamante, sons do espaço]\n",
   "prompt_gerar_imagem": "Gere uma imagem baseada nesta notícia, com estilo visual e temática inspirados no universo de Rick and Morty, incluindo elementos de ficção científica, humor ácido e traços característicos da série animada.",
   "tags": "#neutrino.news #RickAndMorty",
   "chamada": "Siga-nos, compartilhe este vídeo, deixe seu like.",
