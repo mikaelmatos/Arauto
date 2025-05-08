@@ -250,23 +250,26 @@ namespace Arauto
 
                 //Parte do editor de video
 
-                script = "document.getElementsByClassName('TUXButton')[0].click();";
-                result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
-                await Task.Delay(delay * 2);
+                if (configuracao.audio_viral)
+                {
 
-                script = "document.getElementsByClassName('music-card-container')[0]?.childNodes[0]?.dispatchEvent(new MouseEvent('mouseover', { view: window, bubbles: true, cancelable: true }));";
-                result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
-                await Task.Delay(delay * 2);
+                    script = "document.getElementsByClassName('TUXButton')[0].click();";
+                    result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+                    await Task.Delay(delay * 2);
 
-                script = "document.getElementsByClassName('music-card-container')[0].childNodes[0].childNodes[1].childNodes[0].click();";
-                result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
-                await Task.Delay(delay * 2);
+                    script = "document.getElementsByClassName('music-card-container')[0]?.childNodes[0]?.dispatchEvent(new MouseEvent('mouseover', { view: window, bubbles: true, cancelable: true }));";
+                    result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+                    await Task.Delay(delay * 2);
 
-                script = "document.getElementsByClassName('audioOperation')[0].childNodes[0].click();";
-                result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
-                await Task.Delay(delay);
+                    script = "document.getElementsByClassName('music-card-container')[0].childNodes[0].childNodes[1].childNodes[0].click();";
+                    result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+                    await Task.Delay(delay * 2);
 
-                var resultCoo = await webView21.ExecuteScriptAsync(@"
+                    script = "document.getElementsByClassName('audioOperation')[0].childNodes[0].click();";
+                    result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+                    await Task.Delay(delay);
+
+                    var resultCoo = await webView21.ExecuteScriptAsync(@"
 (function() {
     var el = document.getElementsByClassName('scaleInput')[1];
     if (!el) return null;
@@ -278,46 +281,46 @@ namespace Arauto
 })()
 ");
 
-                Point cursorAntes = Cursor.Position;
+                    Point cursorAntes = Cursor.Position;
 
-                if (resultCoo != "null")
-                {
-                    // Remove aspas extras e desserializa
-                    var cleaned = resultCoo.Trim('"').Replace("\\\"", "\"");
-                    var coords = System.Text.Json.JsonSerializer.Deserialize<Coords>(cleaned);
+                    if (resultCoo != "null")
+                    {
+                        // Remove aspas extras e desserializa
+                        var cleaned = resultCoo.Trim('"').Replace("\\\"", "\"");
+                        var coords = System.Text.Json.JsonSerializer.Deserialize<Coords>(cleaned);
 
-                    var webViewPos = webView21.PointToScreen(System.Drawing.Point.Empty);
+                        var webViewPos = webView21.PointToScreen(System.Drawing.Point.Empty);
 
-                    int screenX = webViewPos.X + (int)coords.x;
-                    int screenY = webViewPos.Y + (int)coords.y;
+                        int screenX = webViewPos.X + (int)coords.x;
+                        int screenY = webViewPos.Y + (int)coords.y;
 
-                    Cursor.Position = new System.Drawing.Point(screenX, screenY);
+                        Cursor.Position = new System.Drawing.Point(screenX, screenY);
 
-                    mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
-                    mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+                        mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+                        mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
 
-                    await Task.Delay(300);
-                    Cursor.Position = cursorAntes;
+                        await Task.Delay(300);
+                        Cursor.Position = cursorAntes;
+                    }
+
+
+
+
+
+                    await Task.Delay(delay);
+                    script = "document.getElementsByClassName('audioOperation')[0].childNodes[0].click();";
+                    result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
+
+                    await Task.Delay(1000);
+                    SendKeys.Send("{TAB}");
+                    await Task.Delay(400);
+
+
+                    script = "document.getElementsByClassName('common-modal-footer')[0].childNodes[1].click();";
+                    await webView21.ExecuteScriptAsync(script);
+                    await Task.Delay(7000);
+
                 }
-
-
-
-
-
-                await Task.Delay(delay);
-                script = "document.getElementsByClassName('audioOperation')[0].childNodes[0].click();";
-                result = await webView21.CoreWebView2.ExecuteScriptAsync(script);
-
-                await Task.Delay(1000);
-                SendKeys.Send("{TAB}");
-                await Task.Delay(400);
-
-
-                script = "document.getElementsByClassName('common-modal-footer')[0].childNodes[1].click();";
-                await webView21.ExecuteScriptAsync(script);
-                await Task.Delay(7000);
-
-
                 //Parte do editor de video
 
 

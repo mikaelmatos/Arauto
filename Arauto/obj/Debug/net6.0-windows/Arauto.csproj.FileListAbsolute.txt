@@ -33,3 +33,11 @@ C:\Users\Mikael\source\repos\Arauto\Arauto\obj\Debug\net6.0-windows\Arauto.Prope
 C:\Users\Mikael\source\repos\Arauto\Arauto\obj\Debug\net6.0-windows\Arauto.sourcelink.json
 C:\Users\Mikael\source\repos\Arauto\Arauto\obj\Debug\net6.0-windows\Arauto.ConfigConta.resources
 C:\Users\Mikael\source\repos\Arauto\Arauto\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+C:\Users\Mikael\source\repos\Arauto\Arauto\obj\Debug\net6.0-windows\Arauto.TesteQuiz.resources
+C:\Users\Mikael\source\repos\Arauto\Arauto\bin\Debug\net6.0-windows\NAudio.dll
+C:\Users\Mikael\source\repos\Arauto\Arauto\bin\Debug\net6.0-windows\NAudio.Asio.dll
+C:\Users\Mikael\source\repos\Arauto\Arauto\bin\Debug\net6.0-windows\NAudio.Core.dll
+C:\Users\Mikael\source\repos\Arauto\Arauto\bin\Debug\net6.0-windows\NAudio.Midi.dll
+C:\Users\Mikael\source\repos\Arauto\Arauto\bin\Debug\net6.0-windows\NAudio.Wasapi.dll
+C:\Users\Mikael\source\repos\Arauto\Arauto\bin\Debug\net6.0-windows\NAudio.WinForms.dll
+C:\Users\Mikael\source\repos\Arauto\Arauto\bin\Debug\net6.0-windows\NAudio.WinMM.dll

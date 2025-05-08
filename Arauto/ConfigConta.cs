@@ -29,6 +29,21 @@ namespace Arauto
 
         private async void ConfigConta_Load(object sender, EventArgs e)
         {
+            if (comboBox3.Text == "Quiz" || comboBox3.Text == "Misto")
+            {
+                label13.Enabled = true;
+                textBox6.Enabled = true;
+                label14.Enabled = true;
+                textBox7.Enabled = true;
+            }
+            else
+            {
+                label13.Enabled = false;
+                textBox6.Enabled = false;
+                label14.Enabled = false;
+                textBox7.Enabled = false;
+            }
+
             string blackList = "";
 
             if (File.Exists(Path.GetTempPath() + DateTime.Now.ToString("yyyyMMdd") + "-" + idConta + "blacklist.log"))
@@ -43,7 +58,6 @@ namespace Arauto
 
                 streamReader.Close();
             }
-
 
             string conteudoConf = "";
 
@@ -69,6 +83,14 @@ namespace Arauto
                 textBox4.Text = configuracao.tags;
                 textBox5.Text = configuracao.chamada;
                 checkBox1.Checked = configuracao.conta_ativa;
+                checkBox2.Checked = configuracao.audio_viral;
+                comboBox3.Text = configuracao.estilo;
+                textBox7.Text = configuracao.prompt_quiz_imagem;
+
+                if (!String.IsNullOrEmpty(configuracao.prompt_quiz))
+                {
+                    textBox6.Text = configuracao.prompt_quiz;
+                }
             }
             else
             {
@@ -102,14 +124,14 @@ namespace Arauto
                     label4.Text = result.Replace("Bem-vindo,", "").Replace("Bem-vinda,", "").Trim().Trim('"').Trim().Trim('"');
                 }
 
-                
+
                 webView21.Dispose();
                 webView21 = null;
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
                 GC.Collect();
 
-                
+
             };
 
             await webView22.EnsureCoreWebView2Async(environment);
@@ -157,7 +179,7 @@ namespace Arauto
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
                 GC.Collect();
-            };         
+            };
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -173,6 +195,10 @@ namespace Arauto
             configuracao.tags = textBox4.Text;
             configuracao.chamada = textBox5.Text;
             configuracao.conta_ativa = checkBox1.Checked;
+            configuracao.audio_viral = checkBox2.Checked;
+            configuracao.prompt_quiz = textBox6.Text;
+            configuracao.estilo = comboBox3.Text;
+            configuracao.prompt_quiz_imagem = textBox7.Text;
 
             var options = new JsonSerializerOptions
             {
@@ -222,6 +248,24 @@ namespace Arauto
             Redator redator = new Redator(contas, idConta);
             redator.ShowDialog();
         }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox3.Text == "Quiz" || comboBox3.Text == "Misto")
+            {
+                label13.Enabled = true;
+                textBox6.Enabled = true;
+                label14.Enabled = true;
+                textBox7.Enabled = true;
+            }
+            else
+            {
+                label13.Enabled = false;
+                textBox6.Enabled = false;
+                label14.Enabled = false;
+                textBox7.Enabled = false;
+            }
+        }
     }
 
     public class Configuracao
@@ -236,6 +280,10 @@ namespace Arauto
         public string tags { get; set; }
         public string chamada { get; set; }
         public bool conta_ativa { get; set; }
+        public bool audio_viral { get; set; }
+        public string estilo { get; set; }
+        public string prompt_quiz { get; set; }
+        public string prompt_quiz_imagem { get; set; }
     }
 
 }

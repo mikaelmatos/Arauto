@@ -7,12 +7,20 @@
       "RelativeMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|solutionrelative:arauto\\redator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|c:\\users\\mikael\\source\\repos\\arauto\\arauto\\contas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|solutionrelative:arauto\\contas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|c:\\users\\mikael\\source\\repos\\arauto\\arauto\\testequiz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|solutionrelative:arauto\\testequiz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|C:\\Users\\Mikael\\source\\repos\\Arauto\\arauto\\redator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|solutionrelative:arauto\\redator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|C:\\Users\\Mikael\\source\\repos\\Arauto\\arauto\\testequiz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|solutionrelative:arauto\\testequiz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|c:\\users\\mikael\\source\\repos\\arauto\\arauto\\configconta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|solutionrelative:arauto\\configconta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|C:\\Users\\Mikael\\source\\repos\\Arauto\\arauto\\configconta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4B94ED28-5B1D-46EF-BDE4-216946CAF923}|Arauto\\Arauto.csproj|solutionrelative:arauto\\configconta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,11 +30,59 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TesteQuiz.cs",
+              "DocumentMoniker": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\TesteQuiz.cs",
+              "RelativeDocumentMoniker": "Arauto\\TesteQuiz.cs",
+              "ToolTip": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\TesteQuiz.cs",
+              "RelativeToolTip": "Arauto\\TesteQuiz.cs",
+              "ViewState": "AgIAAGsAAAAAAAAAAADwv4AAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-08T18:07:41.463Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TesteQuiz.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\TesteQuiz.cs",
+              "RelativeDocumentMoniker": "Arauto\\TesteQuiz.cs",
+              "ToolTip": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\TesteQuiz.cs [Projeto]",
+              "RelativeToolTip": "Arauto\\TesteQuiz.cs [Projeto]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-08T19:43:53.29Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ConfigConta.cs",
+              "DocumentMoniker": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\ConfigConta.cs",
+              "RelativeDocumentMoniker": "Arauto\\ConfigConta.cs",
+              "ToolTip": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\ConfigConta.cs",
+              "RelativeToolTip": "Arauto\\ConfigConta.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAP8AAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-08T16:07:13.172Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ConfigConta.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\ConfigConta.cs",
+              "RelativeDocumentMoniker": "Arauto\\ConfigConta.cs",
+              "ToolTip": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\ConfigConta.cs [Projeto]",
+              "RelativeToolTip": "Arauto\\ConfigConta.cs [Projeto]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-08T16:07:11.642Z"
             },
             {
               "$type": "Document",
@@ -36,34 +92,10 @@
               "RelativeDocumentMoniker": "Arauto\\Redator.cs",
               "ToolTip": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\Redator.cs",
               "RelativeToolTip": "Arauto\\Redator.cs",
-              "ViewState": "AgIAALoBAAAAAAAAAAAowMoBAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T14:55:31.251Z",
+              "WhenOpened": "2025-05-08T14:28:25.601Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Contas.cs",
-              "DocumentMoniker": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\Contas.cs",
-              "RelativeDocumentMoniker": "Arauto\\Contas.cs",
-              "ToolTip": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\Contas.cs",
-              "RelativeToolTip": "Arauto\\Contas.cs",
-              "ViewState": "AgIAADMCAAAAAAAAAAAwwEoCAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T09:03:23.13Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Redator.cs [Projeto]",
-              "DocumentMoniker": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\Redator.cs",
-              "RelativeDocumentMoniker": "Arauto\\Redator.cs",
-              "ToolTip": "C:\\Users\\Mikael\\source\\repos\\Arauto\\Arauto\\Redator.cs [Projeto]",
-              "RelativeToolTip": "Arauto\\Redator.cs [Projeto]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T15:03:51.712Z"
             }
           ]
         }

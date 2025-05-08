@@ -58,6 +58,10 @@
               "target": "Package",
               "version": "[1.0.3179.45, )"
             },
+            "NAudio": {
+              "target": "Package",
+              "version": "[2.2.1, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"

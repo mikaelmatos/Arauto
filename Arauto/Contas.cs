@@ -27,7 +27,6 @@ namespace Arauto
 
         private async void Contas_Load(object sender, EventArgs e)
         {
-
             Obterconta1();
             Obterconta2();
             Obterconta3();

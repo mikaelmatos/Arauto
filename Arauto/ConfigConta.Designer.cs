@@ -52,6 +52,13 @@
             label10 = new Label();
             label11 = new Label();
             textBox5 = new TextBox();
+            checkBox2 = new CheckBox();
+            label12 = new Label();
+            comboBox3 = new ComboBox();
+            label13 = new Label();
+            textBox6 = new TextBox();
+            label14 = new Label();
+            textBox7 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)webView21).BeginInit();
             ((System.ComponentModel.ISupportInitialize)webView22).BeginInit();
             SuspendLayout();
@@ -70,16 +77,16 @@
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Português", "Inglês", "Espanhol", "Alemão", "Italiano" });
-            comboBox1.Location = new Point(335, 167);
+            comboBox1.Location = new Point(407, 167);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(176, 23);
+            comboBox1.Size = new Size(106, 23);
             comboBox1.TabIndex = 2;
             comboBox1.Text = "Português";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(285, 170);
+            label1.Location = new Point(357, 170);
             label1.Name = "label1";
             label1.Size = new Size(44, 15);
             label1.TabIndex = 3;
@@ -136,14 +143,14 @@
             comboBox2.Items.AddRange(new object[] { "Notícias", "Futebol", "Famosos", "Saúde", "Signos", "Política", "Economia", "Saúde", "Tecnologia", "Curiosidades", "Celebridades", "Moda", "História", "Esportes", "Humor", "Games", "Música", "Cinema", "Séries", "Educação", "Viagens", "Animais", "Natureza", "Astronomia", "Espiritualidade", "Religião", "Psicologia", "Finanças", "Empreendedorismo", "Carros", "Culinária", "Receitas", "Reviews", "Criptomoedas", "Inteligência", "Mistérios", "Conspirações", "Meditação", "Motivação", "Tendências", "Negócios" });
             comboBox2.Location = new Point(56, 167);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(202, 23);
+            comboBox2.Size = new Size(118, 23);
             comboBox2.TabIndex = 8;
             comboBox2.Text = "Notícias";
             // 
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(212, 531);
+            checkBox1.Location = new Point(214, 679);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(88, 19);
             checkBox1.TabIndex = 10;
@@ -183,7 +190,7 @@
             button1.Cursor = Cursors.Hand;
             button1.Enabled = false;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(436, 528);
+            button1.Location = new Point(438, 676);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 0;
@@ -196,7 +203,7 @@
             button2.Cursor = Cursors.Hand;
             button2.Enabled = false;
             button2.FlatStyle = FlatStyle.Flat;
-            button2.Location = new Point(306, 528);
+            button2.Location = new Point(308, 676);
             button2.Name = "button2";
             button2.Size = new Size(124, 23);
             button2.TabIndex = 15;
@@ -279,11 +286,85 @@
             textBox5.Size = new Size(500, 23);
             textBox5.TabIndex = 22;
             // 
+            // checkBox2
+            // 
+            checkBox2.AutoSize = true;
+            checkBox2.Location = new Point(120, 679);
+            checkBox2.Name = "checkBox2";
+            checkBox2.Size = new Size(84, 19);
+            checkBox2.TabIndex = 24;
+            checkBox2.Text = "Audio Viral";
+            checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(180, 170);
+            label12.Name = "label12";
+            label12.Size = new Size(35, 15);
+            label12.TabIndex = 26;
+            label12.Text = "Estilo";
+            // 
+            // comboBox3
+            // 
+            comboBox3.FormattingEnabled = true;
+            comboBox3.Items.AddRange(new object[] { "Imagem com Narração", "Quiz", "Misto" });
+            comboBox3.Location = new Point(221, 167);
+            comboBox3.Name = "comboBox3";
+            comboBox3.Size = new Size(130, 23);
+            comboBox3.TabIndex = 25;
+            comboBox3.Text = "Imagem com Narração";
+            comboBox3.SelectedIndexChanged += comboBox3_SelectedIndexChanged;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(12, 518);
+            label13.Name = "label13";
+            label13.Size = new Size(74, 15);
+            label13.TabIndex = 28;
+            label13.Text = "Prompt Quiz";
+            // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(12, 542);
+            textBox6.Multiline = true;
+            textBox6.Name = "textBox6";
+            textBox6.ScrollBars = ScrollBars.Both;
+            textBox6.Size = new Size(499, 35);
+            textBox6.TabIndex = 27;
+            textBox6.Text = "Faça uma questão sobre [assunto] com quatro opções, as opções devem ser curtas, o nível deve ser básico, apenas a questão e as respostas \n\n\n";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(12, 591);
+            label14.Name = "label14";
+            label14.Size = new Size(121, 15);
+            label14.TabIndex = 30;
+            label14.Text = "Prompt Quiz Imagem";
+            // 
+            // textBox7
+            // 
+            textBox7.Location = new Point(12, 615);
+            textBox7.Multiline = true;
+            textBox7.Name = "textBox7";
+            textBox7.ScrollBars = ScrollBars.Both;
+            textBox7.Size = new Size(499, 35);
+            textBox7.TabIndex = 29;
+            // 
             // ConfigConta
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(523, 567);
+            ClientSize = new Size(523, 711);
+            Controls.Add(label14);
+            Controls.Add(textBox7);
+            Controls.Add(label13);
+            Controls.Add(textBox6);
+            Controls.Add(label12);
+            Controls.Add(comboBox3);
+            Controls.Add(checkBox2);
             Controls.Add(label11);
             Controls.Add(textBox5);
             Controls.Add(label10);
@@ -309,8 +390,8 @@
             Controls.Add(webView22);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
-            MaximumSize = new Size(539, 606);
-            MinimumSize = new Size(539, 606);
+            MaximumSize = new Size(539, 750);
+            MinimumSize = new Size(539, 750);
             Name = "ConfigConta";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Configurações";
@@ -346,5 +427,12 @@
         private Label label10;
         private Label label11;
         private TextBox textBox5;
+        private CheckBox checkBox2;
+        private Label label12;
+        private ComboBox comboBox3;
+        private Label label13;
+        private TextBox textBox6;
+        private Label label14;
+        private TextBox textBox7;
     }
 }

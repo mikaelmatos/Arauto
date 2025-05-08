@@ -19,5 +19,8 @@
     <Compile Update="Postador.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="TesteQuiz.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
